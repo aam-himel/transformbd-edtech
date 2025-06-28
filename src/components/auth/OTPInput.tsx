@@ -3,8 +3,28 @@ import React from 'react';
 import { Label } from '../ui/label';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp';
 import { Button } from '../ui/button';
+import { useAuthMutations } from '@/hooks/useAuthMutations';
+import { useAuthStore } from '@/store/authStore';
 
 const OTPInput = () => {
+  const { verifyOTPMutation } = useAuthMutations();
+  const { email } = useAuthStore();
+  const [inputOTP, setInputOTP] = React.useState('');
+
+  const handleOTPSubmit = () => {
+    if (inputOTP.length !== 6) {
+      alert('Please enter a valid 6-digit code');
+      return;
+    }
+
+    const data = {
+      email,
+      otp: inputOTP,
+    };
+
+    verifyOTPMutation.mutate(data);
+  };
+
   return (
     <div className='flex-1 bg-black text-center text-white p-8 md:p-16 flex items-center justify-center'>
       <div className='w-full max-w-md space-y-6'>
@@ -24,14 +44,16 @@ const OTPInput = () => {
           <Label className=' inline-block'>Email Verification</Label>
         </div>
         <div className=' flex flex-col text-center gap-4 justify-center items-center'>
-          <InputOTP maxLength={6}>
+          <InputOTP
+            maxLength={6}
+            value={inputOTP}
+            onChange={(value) => setInputOTP(value)}
+            onComplete={handleOTPSubmit}
+          >
             <InputOTPGroup>
-              <InputOTPSlot index={0} />
-              <InputOTPSlot index={1} />
-              <InputOTPSlot index={2} />
-              <InputOTPSlot index={3} />
-              <InputOTPSlot index={4} />
-              <InputOTPSlot index={5} />
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <InputOTPSlot key={i} index={i} />
+              ))}
             </InputOTPGroup>
           </InputOTP>
         </div>

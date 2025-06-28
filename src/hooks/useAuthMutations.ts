@@ -13,6 +13,13 @@ export const useAuthMutations = () => {
             setStep('otp');
         }
     })
+    
+    const verifyOTPMutation = useMutation({
+        mutationFn: verifyOTP,
+        onSuccess: () => {
+            setStep('complete');
+        }
+    })
     const signUpMutation = useMutation({
         mutationFn: signUp,
         onSuccess: (_, variables) => {
@@ -21,16 +28,11 @@ export const useAuthMutations = () => {
         }
     })
 
-    const useVerifyOTPMutation = useMutation({
-        mutationFn: verifyOTP,
-        onSuccess: () => {
-            setStep('complete');
-        }
-    })
+    
 
     return {
         emailVerifyMutation,
         signUpMutation,
-        useVerifyOTPMutation
+        verifyOTPMutation
     }
 }
