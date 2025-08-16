@@ -1,8 +1,5 @@
-
 const EmailSignUpForm = () => {
-  return (
-    <div>EmailSignUpForm</div>
-  )
-}
+  return <div>EmailSignUpForm</div>;
+};
 
-export default EmailSignUpForm
+export default EmailSignUpForm;

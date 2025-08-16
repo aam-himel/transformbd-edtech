@@ -12,4 +12,4 @@ export const useAuthStore = create<AuthState>((set) => ({
   step: 'verify-email',
   setEmail: (email: string) => set({ email }),
   setStep: (step: AuthState['step']) => set({ step }),
-}))
+}));
