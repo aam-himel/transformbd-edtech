@@ -1,7 +1,7 @@
 import { Button } from '../ui/button';
 import { ArrowRightCircle } from 'lucide-react'
 const HeroSection = () => {
-  return <div>
+  return <div className=' max-w-[1140px] mx-auto'>
     <div className=' h-[calc(100vh-64px)] px-4'>
       <h1 className=' text-center text-6xl font-bold my-16'>Start Your Learning Journey Here</h1>
 
