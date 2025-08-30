@@ -111,3 +111,18 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.645 0.246 16.439);
 }
+
+@layer base {
+  .bg-pattern {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+  }
+  .brand-h2 {
+    @apply mb-2 text-2xl font-semibold leading-[32px] md:mb-4 md:text-[44px] md:leading-[56px] text-[#111827];
+  }
+  .brand-h3 {
+    @apply mb-2 text-lg font-semibold leading-[24px] md:mb-4 md:text-2xl md:leading-[32px] text-[#111827];
+  }
+  .brand-subtitle {
+    @apply mb-3 text-base font-bold leading-1 md:text-xl md:font-bold;
+  }
+}

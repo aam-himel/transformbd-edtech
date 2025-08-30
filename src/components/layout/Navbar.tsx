@@ -21,7 +21,7 @@ const Navbar = () => {
         },
     ];
     return (
-        <div className=' h-[64px] bg-white border-b border-b-white/75 shadow-xs'>
+        <div className=' h-[64px] bg-white border-b border-b-gray-500/20 shadow-xs'>
             <div className='flex items-center space-x-20 h-full justify-between max-w-[1140px] mx-auto'>
                 {/* logo */}
                 <div>
