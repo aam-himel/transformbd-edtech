@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedin, } from "react-icons/fa
 
 export default function Footer() {
   return (
-    <div className=' max-w-[1140px] mx-auto'>
+    <div className=' max-w-[1140px] mx-auto pt-4 mt-4'>
       <div className=' grid grid-cols-3 py-4'>
         {/* col 1 */}
         <div className=''>

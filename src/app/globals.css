@@ -126,3 +126,12 @@
     @apply mb-3 text-base font-bold leading-1 md:text-xl md:font-bold;
   }
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
