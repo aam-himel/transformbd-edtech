@@ -9,11 +9,11 @@ const Navbar = () => {
         },
         {
             title: 'Online Courses',
-            href: '/online-courses',
+            href: '/course-details',
         },
         {
             title: 'Offline Courses',
-            href: '/offline-courses',
+            href: '/course-details',
         },
         {
             title: 'About',

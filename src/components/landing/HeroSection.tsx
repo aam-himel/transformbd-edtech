@@ -72,8 +72,10 @@
 
 
 
+import Image from "next/image";
 import { Button } from "../ui/button";
 import { ArrowRightCircle, GraduationCap } from "lucide-react";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -81,7 +83,7 @@ const HeroSection = () => {
       <div className="max-w-[1140px] mx-auto py-16 px-6">
         {/* Headline */}
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-6xl font-extrabold bg-gradient-to-r from-blue-600 via-teal-500 to-green-500 bg-clip-text text-transparent">
+          <h1 className="text-6xl font-extrabold bg-gradient-to-r from-[#EE1B24]  via-[#151216] to-[#EE1B24] via-30% bg-clip-text text-transparent">
             Start Your Learning Journey Here
           </h1>
           <p className="mt-4 text-lg text-gray-600">
@@ -92,50 +94,32 @@ const HeroSection = () => {
         {/* Cards */}
         <div className="mt-16 grid md:grid-cols-2 gap-8">
           {/* Card 1 */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 shadow-md hover:shadow-lg transition">
-            <div className="flex flex-col items-center">
-              <GraduationCap className="h-12 w-12 text-blue-600 mb-4" />
-              <h2 className="text-2xl font-semibold text-blue-700 text-center">
-                Admit Now to Start Your <br /> Offline Classes
-              </h2>
-
-              <div className="grid grid-cols-3 gap-4 my-8 w-full">
-                {[1, 2, 3].map((item, i) => (
-                  <div
-                    key={i}
-                    className="min-h-[120px] rounded-xl bg-blue-400"
-                  ></div>
-                ))}
+          <Link href="/course-details">
+            <div className="relative rounded-xl transition">
+              <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
+                <Image
+                  src="/images/banner2.jpeg"
+                  alt="Hero Image"
+                  fill
+                  className="object-cover"
+                />
               </div>
-
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2">
-                View Offline Plan <ArrowRightCircle className="ml-2 h-5 w-5" />
-              </Button>
             </div>
-          </div>
+          </Link>
 
           {/* Card 2 */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 shadow-md hover:shadow-lg transition">
-            <div className="flex flex-col items-center">
-              <GraduationCap className="h-12 w-12 text-orange-500 mb-4" />
-              <h2 className="text-2xl font-semibold text-orange-700 text-center">
-                Admit Now to Start Your <br /> Online Classes
-              </h2>
-
-              <div className="grid grid-cols-3 gap-4 my-8 w-full">
-                {[1, 2, 3].map((item, i) => (
-                  <div
-                    key={i}
-                    className="min-h-[120px] rounded-xl bg-orange-400"
-                  ></div>
-                ))}
+          <Link href="/course-details">
+            <div className="relative rounded-xl transition">
+              <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
+                <Image
+                  src="/images/banner2.jpeg"
+                  alt="Hero Image"
+                  fill
+                  className="object-cover"
+                />
               </div>
-
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2">
-                View Online Plan <ArrowRightCircle className="ml-2 h-5 w-5" />
-              </Button>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

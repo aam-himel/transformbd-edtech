@@ -9,8 +9,24 @@ import {
     PlayCircle,
     Clock,
     Star,
+    ArrowRight,
 } from 'lucide-react';
+import InstructorGrid from './InstructorGrid';
 
+export type Instructor = {
+    id: string;
+    name: string;
+    title: string;
+    avatar: string; // local / public image path or remote URL
+    rating?: number; // 0-5
+    students?: number;
+    tags?: string[];
+    links?: {
+        website?: string;
+        twitter?: string;
+        linkedin?: string;
+    };
+};
 const CourseHeroSection = () => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [activeModule, setActiveModule] = useState(null);
@@ -88,12 +104,82 @@ const CourseHeroSection = () => {
         },
     ];
 
+    const willLearn: { icon: string, title: string }[] = [
+        { icon: '🎯', title: 'প্রোডাক্ট আইডিয়া জেনারেশন টেকনিক' },
+        { icon: '🎯', title: 'কম্পিটিটর অ্যানালাইসিস করার পদ্ধতি' },
+        { icon: '🎯', title: 'SWOT অ্যানালাইসিস এবং এর প্রয়োগ' },
+        { icon: '🎯', title: 'টার্গেট অডিয়েন্স নির্ধারণ' },
+    ]
+
+    const demoInstructors: Instructor[] = [
+        {
+            id: "1",
+            name: "Ava Thompson",
+            title: "Senior Frontend Engineer @ Cloudly",
+            avatar: "/images/instructors/ava.jpg",
+            rating: 4.9,
+            students: 12400,
+            tags: ["React", "TypeScript", "Design Systems"],
+            links: { website: "#", twitter: "#", linkedin: "#" },
+        },
+        {
+            id: "2",
+            name: "Noah Rahman",
+            title: "ML Engineer & Educator",
+            avatar: "/images/instructors/noah.jpg",
+            rating: 4.8,
+            students: 9800,
+            tags: ["Python", "LLMs", "MLOps"],
+            links: { website: "#", twitter: "#", linkedin: "#" },
+        },
+        {
+            id: "3",
+            name: "Maya Sultana",
+            title: "UX Engineer @ PixelForge",
+            avatar: "/images/instructors/maya.jpg",
+            rating: 4.7,
+            students: 7200,
+            tags: ["UX", "Animation", "Next.js"],
+            links: { website: "#", twitter: "#", linkedin: "#" },
+        },
+        {
+            id: "4",
+            name: "Ethan Park",
+            title: "Full‑Stack Instructor",
+            avatar: "/images/instructors/ethan.jpg",
+            rating: 4.92,
+            students: 15600,
+            tags: ["Node.js", "Postgres", "Prisma"],
+            links: { website: "#", twitter: "#", linkedin: "#" },
+        },
+        {
+            id: "5",
+            name: "Zara Ali",
+            title: "Data Viz Specialist",
+            avatar: "/images/instructors/zara.jpg",
+            rating: 4.85,
+            students: 8600,
+            tags: ["D3.js", "Charts", "Storytelling"],
+            links: { website: "#", twitter: "#", linkedin: "#" },
+        },
+        {
+            id: "6",
+            name: "Liam Chen",
+            title: "DevOps Coach",
+            avatar: "/images/instructors/liam.jpg",
+            rating: 4.88,
+            students: 10400,
+            tags: ["Docker", "Kubernetes", "CI/CD"],
+            links: { website: "#", twitter: "#", linkedin: "#" },
+        },
+    ];
+
     const toggleModule = (moduleId: any) => {
         setActiveModule(activeModule === moduleId ? null : moduleId);
     };
 
     return (
-        <div className='min-h-screen  text-white relative overflow-hidden'>
+        <div className='min-h-screen  text-slate-900 relative overflow-hidden'>
             {/* Background Pattern */}
             <div className='absolute inset-0 opacity-5'>
                 <div className='absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-purple-600/20'></div>
@@ -123,7 +209,7 @@ const CourseHeroSection = () => {
                                 <h1 className='text-4xl lg:text-5xl font-bold mb-6 leading-tight'>
                                     Digital Product Management
                                 </h1>
-                                <p className='text-lg text-gray-300 leading-relaxed'>
+                                <p className='text-lg text-gray-600 leading-relaxed'>
                                     প্রোডাক্ট ম্যানেজমেন্টের ব্যাসিক থেকে অ্যাডভান্সড ক্রিয়েটিভ,
                                     মার্কেট অনুগত এক্সপেরিমেন্ট, তার বিশ্লেষণের জন্য সর্বোচ্চ
                                     নিয়ে সাজানো ডিজিটাল প্রোডাক্ট ম্যানেজমেন্ট লাইভ কোর্স। ইতালি
@@ -133,33 +219,33 @@ const CourseHeroSection = () => {
                             </div>
 
                             {/* CTA Button */}
-                            <button className='bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-8 py-4 rounded-lg text-lg transition-colors duration-200 transform hover:scale-105'>
+                            <button className='bg-[#EE1B24] hover:bg-[#EE1B24]/90 text-white font-bold px-8 py-4 rounded-lg text-lg transition-colors duration-200 transform hover:scale-105'>
                                 পরবর্তী ব্যাচের জন্য বুকিং দিন
                             </button>
 
                             {/* Stats */}
-                            <div className='flex items-center gap-6 text-sm'>
-                                <div className='flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full'>
-                                    <Play className='w-4 h-4 text-cyan-400' />
-                                    <span>৩২ টি লাইভ ক্লাস</span>
+                            <div className='flex items-center space-x-3 flex-wrap text-sm text-white'>
+                                <div className='flex items-center gap-1 bg-slate-800 px-3 py-2 rounded-full'>
+                                    <Play className='w-4 h-4 text-green-400' />
+                                    <span className=' text-xs inline-block'>৩২ টি লাইভ ক্লাস</span>
                                 </div>
-                                <div className='flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full'>
+                                <div className='flex items-center gap-1 bg-slate-800 px-4 py-2 rounded-full'>
                                     <Users className='w-4 h-4 text-green-400' />
-                                    <span>তথ্য প্রোজেক্ট সাপোর্ট</span>
+                                    <span className='text-xs inline-block'>তথ্য প্রোজেক্ট সাপোর্ট</span>
                                 </div>
-                                <div className='flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full'>
-                                    <Calendar className='w-4 h-4 text-purple-400' />
-                                    <span>ক্লাস রেকর্ড এ লাইফটাইম এক্সেস</span>
+                                <div className='flex items-center gap-1 bg-slate-800 px-4 py-2 rounded-full'>
+                                    <Calendar className='w-4 h-4 text-green-400' />
+                                    <span className='text-xs inline-block'>ক্লাস রেকর্ড এ লাইফটাইম এক্সেস</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Right Video Section */}
                         <div className='relative'>
-                            <div className='bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl p-6 border border-slate-600/50'>
+                            <div className='bg-gradient-to-r from-[#101828] to-slate-900 rounded-2xl p-6 border border-slate-600/50'>
                                 <div className='flex items-center gap-2 mb-4'>
                                     <PlayCircle className='w-5 h-5 text-cyan-400' />
-                                    <span className='text-sm font-medium'>
+                                    <span className='text-sm font-medium text-white'>
                                         কিভাবে দেখে নিন কোর্সের ডেমো ক্লাস
                                     </span>
                                 </div>
@@ -173,21 +259,10 @@ const CourseHeroSection = () => {
                                         <div className='text-center'>
                                             <div className='w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto group-hover:bg-white/30 transition-colors'>
                                                 <Play
-                                                    className='w-8 h-8 text-white ml-1'
+                                                    className='w-8 h-8 text-slate-900 ml-1'
                                                     fill='currentColor'
                                                 />
                                             </div>
-                                            <h3 className='text-2xl font-bold mb-2'>Digital</h3>
-                                            <h3 className='text-2xl font-bold mb-2'>
-                                                Product
-                                                <span className='inline-block ml-2 w-8 h-8 bg-white rounded-full flex items-center justify-center'>
-                                                    <Play
-                                                        className='w-4 h-4 text-black ml-0.5'
-                                                        fill='currentColor'
-                                                    />
-                                                </span>
-                                            </h3>
-                                            <h3 className='text-xl font-bold'>Management</h3>
                                         </div>
                                     </div>
 
@@ -203,8 +278,8 @@ const CourseHeroSection = () => {
                 {/* Curriculum Section */}
                 <div className='my-24'>
                     <div className=' flex items-center justify-center w-full'>
-                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
-                            <span className='absolute inset-0 border border-dashed border-sky-300/60 bg-sky-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
+                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-slate-900 uppercase dark:text-sky-300'>
+                            <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
                             কারিকুলাম
                             <svg
                                 width='5'
@@ -267,7 +342,7 @@ const CourseHeroSection = () => {
                         {modules.map((module) => (
                             <div
                                 key={module.id}
-                                className='bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden'
+                                className='bg-slate-900 text-white rounded-xl border border-slate-700/50 overflow-hidden'
                             >
                                 <button
                                     className='w-full flex items-center justify-between p-6 text-left hover:bg-slate-700/30 transition-colors'
@@ -280,7 +355,7 @@ const CourseHeroSection = () => {
                                             {module.icon}
                                         </div>
                                         <div>
-                                            <div className='text-sm text-gray-400'>
+                                            <div className='text-sm text-white'>
                                                 {module.number}
                                             </div>
                                             <div className='text-lg font-semibold'>
@@ -320,9 +395,14 @@ const CourseHeroSection = () => {
                 </div>
 
                 <div className='my-24 max-w-4xl mx-auto space-y-4'>
+                    <div className='mb-24'>
+                        <InstructorGrid />
+                    </div>
+
+
                     <div className=' flex items-center justify-center w-full'>
-                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
-                            <span className='absolute inset-0 border border-dashed border-sky-300/60 bg-sky-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
+                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-slate-900 uppercase dark:text-sky-300'>
+                            <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
                             যেসব ট্যুলস ও টেকনোলোজি শিখবেন
                             <svg
                                 width='5'
@@ -368,6 +448,56 @@ const CourseHeroSection = () => {
                         <div className=' h-28 bg-slate-500'></div>
                         <div className=' h-28 bg-slate-500'></div>
                         <div className=' h-28 bg-slate-500'></div>
+                    </div>
+
+
+                    <div className=' py-20'>
+                        <div className=' flex items-center justify-center w-full'>
+                            <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-slate-900 uppercase dark:text-sky-300'>
+                                <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
+                                কোর্সটি থেকে কী কী শিখবেন?
+                                <svg
+                                    width='5'
+                                    height='5'
+                                    viewBox='0 0 5 5'
+                                    className='absolute top-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50'
+                                >
+                                    <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
+                                </svg>
+                                <svg
+                                    width='5'
+                                    height='5'
+                                    viewBox='0 0 5 5'
+                                    className='absolute top-[-2px] right-[-2px] fill-sky-300 dark:fill-sky-300/50'
+                                >
+                                    <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
+                                </svg>
+                                <svg
+                                    width='5'
+                                    height='5'
+                                    viewBox='0 0 5 5'
+                                    className='absolute bottom-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50'
+                                >
+                                    <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
+                                </svg>
+                                <svg
+                                    width='5'
+                                    height='5'
+                                    viewBox='0 0 5 5'
+                                    className='absolute right-[-2px] bottom-[-2px] fill-sky-300 dark:fill-sky-300/50'
+                                >
+                                    <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
+                                </svg>
+                            </h2>
+                        </div>
+                        <div className='grid grid-cols-3 gap-3 p-2'>
+                            {willLearn.map((item, index) => (
+                                <div className=' flex items-center gap-2 bg-slate-800 p-2 rounded-sm'>
+                                    <ArrowRight className=' bg-green-600' size={20} />
+                                    <p className='text-white'>{item.title}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 {/* Video Modal */}

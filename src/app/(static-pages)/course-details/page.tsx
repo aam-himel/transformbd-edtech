@@ -30,7 +30,7 @@ export default function CourseDetails() {
   return (
     <div>
       <Navbar />
-      <div className="bg-[#0F172A] text-white">
+      <div className="bg-white text-slate-900">
         <CourseHeroSection />
       </div>
       <Footer />
