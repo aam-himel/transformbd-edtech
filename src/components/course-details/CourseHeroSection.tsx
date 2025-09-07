@@ -265,6 +265,8 @@ const CourseHeroSection = () => {
                             {instructors.map((instructor, index) => (
                                 <div key={index} className='flex items-center gap-2'>
                                     <Image
+                                        width={32}
+                                        height={32}
                                         src={instructor.avatar}
                                         alt={instructor.name}
                                         className='w-8 h-8 rounded-full border-2 border-gray-600'
