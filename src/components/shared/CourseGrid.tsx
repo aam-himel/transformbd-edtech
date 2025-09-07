@@ -1,5 +1,6 @@
 import React from 'react';
 import { Clock, Users, Star } from 'lucide-react';
+import Image from 'next/image';
 
 const CourseGrid = () => {
     const courses = [
@@ -112,7 +113,7 @@ const CourseGrid = () => {
                         >
                             {/* Course Image */}
                             <div className="relative h-48 overflow-hidden">
-                                <img
+                                <Image
                                     src={course.image}
                                     alt={course.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

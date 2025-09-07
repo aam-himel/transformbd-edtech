@@ -7,11 +7,10 @@ import {
     Calendar,
     ChevronDown,
     PlayCircle,
-    Clock,
-    Star,
     ArrowRight,
 } from 'lucide-react';
 import InstructorGrid from './InstructorGrid';
+import Image from 'next/image';
 
 export type Instructor = {
     id: string;
@@ -29,7 +28,7 @@ export type Instructor = {
 };
 const CourseHeroSection = () => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
-    const [activeModule, setActiveModule] = useState(null);
+    const [activeModule, setActiveModule] = useState(0);
 
     // Dummy YouTube video ID - replace with actual video ID
     const videoId = 'dQw4w9WgXcQ';
@@ -111,71 +110,10 @@ const CourseHeroSection = () => {
         { icon: '🎯', title: 'টার্গেট অডিয়েন্স নির্ধারণ' },
     ]
 
-    const demoInstructors: Instructor[] = [
-        {
-            id: "1",
-            name: "Ava Thompson",
-            title: "Senior Frontend Engineer @ Cloudly",
-            avatar: "/images/instructors/ava.jpg",
-            rating: 4.9,
-            students: 12400,
-            tags: ["React", "TypeScript", "Design Systems"],
-            links: { website: "#", twitter: "#", linkedin: "#" },
-        },
-        {
-            id: "2",
-            name: "Noah Rahman",
-            title: "ML Engineer & Educator",
-            avatar: "/images/instructors/noah.jpg",
-            rating: 4.8,
-            students: 9800,
-            tags: ["Python", "LLMs", "MLOps"],
-            links: { website: "#", twitter: "#", linkedin: "#" },
-        },
-        {
-            id: "3",
-            name: "Maya Sultana",
-            title: "UX Engineer @ PixelForge",
-            avatar: "/images/instructors/maya.jpg",
-            rating: 4.7,
-            students: 7200,
-            tags: ["UX", "Animation", "Next.js"],
-            links: { website: "#", twitter: "#", linkedin: "#" },
-        },
-        {
-            id: "4",
-            name: "Ethan Park",
-            title: "Full‑Stack Instructor",
-            avatar: "/images/instructors/ethan.jpg",
-            rating: 4.92,
-            students: 15600,
-            tags: ["Node.js", "Postgres", "Prisma"],
-            links: { website: "#", twitter: "#", linkedin: "#" },
-        },
-        {
-            id: "5",
-            name: "Zara Ali",
-            title: "Data Viz Specialist",
-            avatar: "/images/instructors/zara.jpg",
-            rating: 4.85,
-            students: 8600,
-            tags: ["D3.js", "Charts", "Storytelling"],
-            links: { website: "#", twitter: "#", linkedin: "#" },
-        },
-        {
-            id: "6",
-            name: "Liam Chen",
-            title: "DevOps Coach",
-            avatar: "/images/instructors/liam.jpg",
-            rating: 4.88,
-            students: 10400,
-            tags: ["Docker", "Kubernetes", "CI/CD"],
-            links: { website: "#", twitter: "#", linkedin: "#" },
-        },
-    ];
 
-    const toggleModule = (moduleId: any) => {
-        setActiveModule(activeModule === moduleId ? null : moduleId);
+
+    const toggleModule = (moduleId: number) => {
+        setActiveModule(activeModule === moduleId ? 0 : moduleId);
     };
 
     return (
@@ -326,7 +264,7 @@ const CourseHeroSection = () => {
                             <span>কোর্স নিরদেশ:</span>
                             {instructors.map((instructor, index) => (
                                 <div key={index} className='flex items-center gap-2'>
-                                    <img
+                                    <Image
                                         src={instructor.avatar}
                                         alt={instructor.name}
                                         className='w-8 h-8 rounded-full border-2 border-gray-600'
@@ -492,7 +430,7 @@ const CourseHeroSection = () => {
                         </div>
                         <div className='grid grid-cols-3 gap-3 p-2'>
                             {willLearn.map((item, index) => (
-                                <div className=' flex items-center gap-2 bg-slate-800 p-2 rounded-sm'>
+                                <div key={index} className=' flex items-center gap-2 bg-slate-800 p-2 rounded-sm'>
                                     <ArrowRight className=' bg-green-600' size={20} />
                                     <p className='text-white'>{item.title}</p>
                                 </div>

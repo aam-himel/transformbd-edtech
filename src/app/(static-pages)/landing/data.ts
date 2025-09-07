@@ -1,7 +1,7 @@
 export const courseFacilitiesData: {
   title: string;
   description: string;
-  icon?: any;
+  icon?: string;
 }[] = [
   {
     title: 'ইন্ডাস্ট্রি এক্সপার্টদের কন্টেন্ট',

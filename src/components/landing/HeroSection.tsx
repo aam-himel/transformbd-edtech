@@ -73,8 +73,6 @@
 
 
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { ArrowRightCircle, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 const HeroSection = () => {

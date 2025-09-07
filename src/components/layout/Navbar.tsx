@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '../ui/button';
+import Image from 'next/image';
 const Navbar = () => {
     const navLinks = [
         {
@@ -26,7 +27,7 @@ const Navbar = () => {
                 {/* logo */}
                 <div>
                     <Link href='/'>
-                        <img src='/images/logo.svg' alt='logo' width={200} height={100} />
+                        <Image src='/images/logo.svg' alt='logo' width={200} height={100} />
                     </Link>
                 </div>
                 <div className='flex-1'>
@@ -41,7 +42,7 @@ const Navbar = () => {
 
                 <div className='flex items-center gap-4'>
                     <div className=' space-x-1 flex items-center'>
-                        <img src={'/images/phone.svg'} alt='avatar' width={24} height={24} />
+                        <Image src={'/images/phone.svg'} alt='avatar' width={24} height={24} />
                         <span>12345678911</span>
                     </div>
 
