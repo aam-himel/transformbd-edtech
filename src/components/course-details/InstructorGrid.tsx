@@ -69,7 +69,7 @@ function Stars({ value = 0 }: { value?: number }) {
           className={`h-4 w-4 ${i < full ? "fill-current" : hasHalf && i === full ? "[clip-path:polygon(0_0,50%_0,50%_100%,0_100%)] fill-current" : ""}`}
         />
       ))}
-      <span className="ml-1 text-sm text-muted-foreground">{value.toFixed(2)}</span>
+      <span className="ml-1 text-sm text-gray-200">{value.toFixed(2)}</span>
     </div>
   );
 }
@@ -123,7 +123,7 @@ export default function InstructorGrid({
               </svg>
             </h2>
           </div>
-          <p className="mt-2 text-muted-foreground">Hand‑picked experts with real‑world experience.</p>
+          <p className="mt-2 text-gray-200">Hand‑picked experts with real‑world experience.</p>
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -158,7 +158,7 @@ export default function InstructorGrid({
                   </div>
                   <CardTitle className="mt-4 text-center">
                     <span className="block text-lg font-semibold leading-tight">{ins.name}</span>
-                    <span className="mt-1 block text-sm font-normal text-muted-foreground">{ins.title}</span>
+                    <span className="mt-1 block text-sm font-normal text-gray-200">{ins.title}</span>
                   </CardTitle>
                 </CardHeader>
 
@@ -166,7 +166,7 @@ export default function InstructorGrid({
                   <div className="flex items-center justify-center">
                     <Stars value={ins.rating ?? 0} />
                     {ins.students ? (
-                      <span className="ml-3 text-sm text-muted-foreground">{Intl.NumberFormat().format(ins.students)} students</span>
+                      <span className="ml-3 text-sm text-gray-200">{Intl.NumberFormat().format(ins.students)} students</span>
                     ) : null}
                   </div>
 

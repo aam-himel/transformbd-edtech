@@ -1,31 +1,15 @@
-// import Footer from '@/components/layout/Footer'
-// import Navbar from '@/components/layout/Navbar'
-// import React from 'react'
-
-// export default function CourseDetails() {
-//   return (
-//     <div>
-//       <Navbar />
-
-//       <Footer />
-//     </div>
-//   )
-// }
 
 
-"use client";
-
-
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CourseHeroSection from "@/components/course-details/CourseHeroSection";
+import Navbar from "@/components/layout/Navbar";
 
 export default function CourseDetails() {
 
   return (
     <div>
       <Navbar />
-      <div className="bg-white text-slate-900">
+      <div className="bg-animated bg-gradient-to-br from-[#e81c24] via-slate-950 to-[#f90212] text-white">
         <CourseHeroSection />
       </div>
       <Footer />

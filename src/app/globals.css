@@ -135,3 +135,38 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* global.css */
+@keyframes subtleGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  20% {
+    background-position: 50% 60%;
+  }
+  40% {
+    background-position: 100% 50%;
+  }
+  60% {
+    background-position: 50% 40%;
+  }
+  80% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-animated {
+  background: linear-gradient(
+    120deg,
+    #e81c23c7 0%,
+    /* brand red, used subtly */ #011b43 30%,
+    /* dark slate */ #102548 60%,
+    /* soft blue */ #433207 100% /* soft yellow for warmth */
+  );
+  background-size: 300% 300%;
+  animation: subtleGradient 60s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+  /* Smooth, slow, non-distracting */
+}

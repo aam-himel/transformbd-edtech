@@ -117,7 +117,7 @@ const CourseHeroSection = () => {
     };
 
     return (
-        <div className='min-h-screen  text-slate-900 relative overflow-hidden'>
+        <div className='min-h-screen  text-white relative overflow-hidden'>
             {/* Background Pattern */}
             <div className='absolute inset-0 opacity-5'>
                 <div className='absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-purple-600/20'></div>
@@ -132,7 +132,7 @@ const CourseHeroSection = () => {
 
             <div className='relative z-10'>
                 {/* Main Content */}
-                <div className='container mx-auto px-6 py-16 bg-pattern'>
+                <div className='container mx-auto px-6 py-16 bg-pattern text-white'>
                     <div className='grid lg:grid-cols-2 gap-12 items-center'>
                         {/* Left Content */}
                         <div className='space-y-8'>
@@ -147,7 +147,7 @@ const CourseHeroSection = () => {
                                 <h1 className='text-4xl lg:text-5xl font-bold mb-6 leading-tight'>
                                     Digital Product Management
                                 </h1>
-                                <p className='text-lg text-gray-600 leading-relaxed'>
+                                <p className='text-lg text-gray-200 leading-relaxed'>
                                     প্রোডাক্ট ম্যানেজমেন্টের ব্যাসিক থেকে অ্যাডভান্সড ক্রিয়েটিভ,
                                     মার্কেট অনুগত এক্সপেরিমেন্ট, তার বিশ্লেষণের জন্য সর্বোচ্চ
                                     নিয়ে সাজানো ডিজিটাল প্রোডাক্ট ম্যানেজমেন্ট লাইভ কোর্স। ইতালি
@@ -197,7 +197,7 @@ const CourseHeroSection = () => {
                                         <div className='text-center'>
                                             <div className='w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto group-hover:bg-white/30 transition-colors'>
                                                 <Play
-                                                    className='w-8 h-8 text-slate-900 ml-1'
+                                                    className='w-8 h-8 text-white ml-1'
                                                     fill='currentColor'
                                                 />
                                             </div>
@@ -216,7 +216,7 @@ const CourseHeroSection = () => {
                 {/* Curriculum Section */}
                 <div className='my-24'>
                     <div className=' flex items-center justify-center w-full'>
-                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-slate-900 uppercase dark:text-sky-300'>
+                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
                             <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
                             কারিকুলাম
                             <svg
@@ -341,7 +341,7 @@ const CourseHeroSection = () => {
 
 
                     <div className=' flex items-center justify-center w-full'>
-                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-slate-900 uppercase dark:text-sky-300'>
+                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
                             <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
                             যেসব ট্যুলস ও টেকনোলোজি শিখবেন
                             <svg
@@ -393,7 +393,7 @@ const CourseHeroSection = () => {
 
                     <div className=' py-20'>
                         <div className=' flex items-center justify-center w-full'>
-                            <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-slate-900 uppercase dark:text-sky-300'>
+                            <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
                                 <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
                                 কোর্সটি থেকে কী কী শিখবেন?
                                 <svg

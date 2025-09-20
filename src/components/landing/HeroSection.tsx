@@ -92,7 +92,7 @@ const HeroSection = () => {
         {/* Cards */}
         <div className="mt-16 grid md:grid-cols-2 gap-8">
           {/* Card 1 */}
-          <Link href="/course-details">
+          <Link href="/special-offer">
             <div className="relative rounded-xl transition">
               <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
                 <Image
@@ -106,7 +106,7 @@ const HeroSection = () => {
           </Link>
 
           {/* Card 2 */}
-          <Link href="/course-details">
+          <Link href="/special-offer">
             <div className="relative rounded-xl transition">
               <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
                 <Image

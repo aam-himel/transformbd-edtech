@@ -1,6 +1,7 @@
 import React from 'react';
 import { Clock, Users, Star } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const CourseGrid = () => {
     const courses = [
@@ -103,84 +104,87 @@ const CourseGrid = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-orange-400 via-red-400 to-pink-400 p-6">
+        <div className="min-h-screen">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {courses.map((course) => (
-                        <div
-                            key={course.id}
-                            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
-                        >
-                            {/* Course Image */}
-                            <div className="relative h-48 overflow-hidden">
-                                <Image
-                                    src={course.image}
-                                    alt={course.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <Link href={`/course-details`} key={course.id} className="block">
+                            <div
+                                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+                            >
+                                {/* Course Image */}
+                                <div className="relative h-48 overflow-hidden">
+                                    <Image
+                                        width={400}
+                                        height={200}
+                                        src={course.image}
+                                        alt={course.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
-                                {/* Tech Stack Overlay */}
-                                <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
-                                    {course.tech.map((tech, index) => (
-                                        <span
-                                            key={index}
-                                            className="px-2 py-1 bg-black/70 text-white text-xs rounded-full font-medium"
-                                        >
-                                            {tech}
+                                    {/* Tech Stack Overlay */}
+                                    <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
+                                        {course.tech.map((tech, index) => (
+                                            <span
+                                                key={index}
+                                                className="px-2 py-1 bg-black/70 text-white text-xs rounded-full font-medium"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    {/* Category Badge */}
+                                    <div className="absolute top-3 left-3">
+                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${course.categoryColor}`}>
+                                            {course.category}
                                         </span>
-                                    ))}
+                                    </div>
+
+                                    {/* Duration Badge */}
+                                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 px-2 py-1 rounded-full">
+                                        <Clock className="w-3 h-3 text-gray-600" />
+                                        <span className="text-xs text-gray-700 font-medium">{course.duration}</span>
+                                    </div>
                                 </div>
 
-                                {/* Category Badge */}
-                                <div className="absolute top-3 left-3">
-                                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${course.categoryColor}`}>
-                                        {course.category}
-                                    </span>
-                                </div>
+                                {/* Course Content */}
+                                <div className="p-5">
+                                    <h3 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 leading-tight">
+                                        {course.title}
+                                    </h3>
 
-                                {/* Duration Badge */}
-                                <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 px-2 py-1 rounded-full">
-                                    <Clock className="w-3 h-3 text-gray-600" />
-                                    <span className="text-xs text-gray-700 font-medium">{course.duration}</span>
+                                    {/* Price Section */}
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-2xl font-bold text-red-600">{course.price}</span>
+                                            <span className="text-sm text-gray-2000 line-through">{course.originalPrice}</span>
+                                        </div>
+                                        <div className="bg-orange-500 text-white px-2 py-1 rounded-full text-sm font-bold">
+                                            {course.discount}
+                                        </div>
+                                    </div>
+
+                                    {/* Stats */}
+                                    <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                                        <div className="flex items-center gap-1">
+                                            <Users className="w-4 h-4" />
+                                            <span>১২৫+ শিক্ষার্থী</span>
+                                        </div>
+                                        <div className="flex items-center gap-1">
+                                            <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                                            <span>৪.৮</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Action Button */}
+                                    <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02]">
+                                        এনরোল করুন
+                                    </button>
                                 </div>
                             </div>
-
-                            {/* Course Content */}
-                            <div className="p-5">
-                                <h3 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 leading-tight">
-                                    {course.title}
-                                </h3>
-
-                                {/* Price Section */}
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-2xl font-bold text-red-600">{course.price}</span>
-                                        <span className="text-sm text-gray-500 line-through">{course.originalPrice}</span>
-                                    </div>
-                                    <div className="bg-orange-500 text-white px-2 py-1 rounded-full text-sm font-bold">
-                                        {course.discount}
-                                    </div>
-                                </div>
-
-                                {/* Stats */}
-                                <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
-                                    <div className="flex items-center gap-1">
-                                        <Users className="w-4 h-4" />
-                                        <span>১২৫+ শিক্ষার্থী</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                                        <span>৪.৮</span>
-                                    </div>
-                                </div>
-
-                                {/* Action Button */}
-                                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02]">
-                                    এনরোল করুন
-                                </button>
-                            </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
