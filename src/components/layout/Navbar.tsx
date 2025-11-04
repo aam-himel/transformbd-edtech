@@ -3,17 +3,17 @@ import React from 'react'
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { BookOpen, Users, Clock, MapPin } from 'lucide-react'
+import { useCourseStore } from '@/store/courseStore'
+import { ICourse } from '@/types/api'
 
 export default function Navbar() {
   const navLinks = [
@@ -105,6 +105,8 @@ export default function Navbar() {
     }
   ];
 
+  const { courses } = useCourseStore();
+
   return (
     <div className='h-[64px] bg-white border-b border-b-gray-500/20 shadow-xs'>
       <div className='flex items-center h-full justify-between max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8'>
@@ -152,7 +154,7 @@ export default function Navbar() {
                       <p className="text-xs sm:text-sm text-gray-600">Learn at your own pace from anywhere</p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                      {onlineCourses.map((course) => (
+                      {/* {courses.length > 0 && onlineCourses.map((course) => (
                         <NavigationMenuLink key={course.id} asChild>
                           <Link
                             href={course.href}
@@ -181,11 +183,38 @@ export default function Navbar() {
                             </div>
                           </Link>
                         </NavigationMenuLink>
+                      ))} */}
+                      {courses && courses.map((course: ICourse) => (
+                        <NavigationMenuLink key={course.course_id} asChild>
+                          <Link
+                            href={course.featured_image_url || '/course-details'}
+                            className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                          >
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                              <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors mb-1 text-sm sm:text-base">
+                                {course.title}
+                              </h4>
+                              <p className="text-xs sm:text-sm text-gray-600 mb-2 line-clamp-2">
+                                {course.description}
+                              </p>
+                              <div className="flex items-center space-x-2 sm:space-x-4 text-xs text-gray-2000">
+
+                                <div className="flex items-center space-x-1">
+                                  <Users className="w-3 h-3" />
+                                  <span>{course.capacity}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        </NavigationMenuLink>
                       ))}
                     </div>
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <Link
-                        href="/special-offer"
+                        href="/courses"
                         className="text-blue-600 hover:text-blue-700 font-medium text-xs sm:text-sm"
                       >
                         View all online courses →

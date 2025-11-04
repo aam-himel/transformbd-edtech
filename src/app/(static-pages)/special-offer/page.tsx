@@ -13,7 +13,6 @@ const SpecialOffer = () => {
 
             <CourseGrid />
             <CourseHeroSection />
-
         </div>
     )
 }
