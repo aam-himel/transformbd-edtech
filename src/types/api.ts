@@ -24,4 +24,12 @@ export interface ICourse {
   updated_at: string | null;
 }
 
+export interface IAuthErrorResponse {
+  code: number;
+  message: string;
+  data: {
+    [key: string]: string[];
+  };
+}
+
 export type ICoursesResponse = IApiResponse<ICourse[]>;

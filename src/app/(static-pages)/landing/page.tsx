@@ -10,18 +10,7 @@ import { ICoursesResponse } from '@/types/api';
 import React, { useEffect } from 'react';
 
 const LandingPage = () => {
-  const { setCourses } = useCourseStore();
 
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const fetchData = async () => {
-    const res = await fetch('https://course.transformbd.com/api/courses');
-    const data: ICoursesResponse = await res.json();
-    setCourses(data.data);
-
-  }
   return (
     <div>
       <Navbar />

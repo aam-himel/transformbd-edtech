@@ -26,69 +26,66 @@ export type Instructor = {
         linkedin?: string;
     };
 };
-const CourseHeroSection = () => {
+
+interface Course {
+    course_id: number;
+    title: string;
+    description: string;
+    price: string;
+    featured_video_url: string | null;
+    featured_image_url: string | null;
+    tagline: string;
+    location: string;
+    time: string | null;
+    capacity: string;
+    type: string;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
+interface InstructorProp {
+    account_id: number;
+    name: string;
+}
+
+interface ModuleProp {
+    module_id: number;
+    course_id: number;
+    title: string;
+    description: string;
+    module_order: number;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
+interface CourseHeroSectionProps {
+    course?: Course;
+    instructors?: InstructorProp[];
+    modules?: ModuleProp[];
+}
+
+const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiModules }: CourseHeroSectionProps = {}) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [activeModule, setActiveModule] = useState(0);
 
     // Dummy YouTube video ID - replace with actual video ID
     const videoId = 'dQw4w9WgXcQ';
 
-    const modules = [
-        {
-            id: 1,
-            number: 'মডিউল ১',
-            title: 'প্রোডাক্ট ম্যানেজমেন্টের ফান্ডামেন্টাল',
-            icon: '💡',
-            color: 'bg-orange-500',
-            lessons: [
-                'প্রোডাক্ট ম্যানেজমেন্ট কী এবং কেন গুরুত্বপূর্ণ',
-                'প্রোডাক্ট ম্যানেজারের ভূমিকা ও দায়িত্ব',
-                'প্রোডাক্ট লাইফসাইকেল বোঝা',
-                'মার্কেট রিসার্চ এবং কাস্টমার অ্যানালাইসিস',
-            ],
-        },
-        {
-            id: 2,
-            number: 'মডিউল ২',
-            title: 'আইডিয়েশন এবং মার্কেট এনালাইসিস',
-            icon: '🎯',
-            color: 'bg-blue-500',
-            lessons: [
-                'প্রোডাক্ট আইডিয়া জেনারেশন টেকনিক',
-                'কম্পিটিটর অ্যানালাইসিস করার পদ্ধতি',
-                'SWOT অ্যানালাইসিস এবং এর প্রয়োগ',
-                'টার্গেট অডিয়েন্স নির্ধারণ',
-            ],
-        },
-        {
-            id: 3,
-            number: 'মডিউল ২',
-            title: 'আইডিয়েশন এবং মার্কেট এনালাইসিস',
-            icon: '🎯',
-            color: 'bg-blue-500',
-            lessons: [
-                'প্রোডাক্ট আইডিয়া জেনারেশন টেকনিক',
-                'কম্পিটিটর অ্যানালাইসিস করার পদ্ধতি',
-                'SWOT অ্যানালাইসিস এবং এর প্রয়োগ',
-                'টার্গেট অডিয়েন্স নির্ধারণ',
-            ],
-        },
-        {
-            id: 4,
-            number: 'মডিউল ২',
-            title: 'আইডিয়েশন এবং মার্কেট এনালাইসিস',
-            icon: '🎯',
-            color: 'bg-blue-500',
-            lessons: [
-                'প্রোডাক্ট আইডিয়া জেনারেশন টেকনিক',
-                'কম্পিটিটর অ্যানালাইসিস করার পদ্ধতি',
-                'SWOT অ্যানালাইসিস এবং এর প্রয়োগ',
-                'টার্গেট অডিয়েন্স নির্ধারণ',
-            ],
-        },
-    ];
+    // Use API data if available, otherwise use dummy data
+    const modules = apiModules && apiModules.length > 0 ? apiModules.map(m => ({
+        id: m.module_id,
+        number: `মডিউল ${m.module_order}`,
+        title: m.title,
+        icon: '📚',
+        color: 'bg-orange-500',
+        lessons: [m.description],
+    })) : []
 
-    const instructors = [
+    const instructors = apiInstructors && apiInstructors.length > 0 ? apiInstructors.map(i => ({
+        name: i.name,
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
+        role: 'ইন্সট্রাক্টর',
+    })) : [
         {
             name: 'Shadman Rahman',
             avatar:
@@ -145,14 +142,10 @@ const CourseHeroSection = () => {
                             {/* Title */}
                             <div>
                                 <h1 className='text-4xl lg:text-5xl font-bold mb-6 leading-tight'>
-                                    Digital Product Management
+                                    {course?.title || 'Digital Product Management'}
                                 </h1>
                                 <p className='text-lg text-gray-200 leading-relaxed'>
-                                    প্রোডাক্ট ম্যানেজমেন্টের ব্যাসিক থেকে অ্যাডভান্সড ক্রিয়েটিভ,
-                                    মার্কেট অনুগত এক্সপেরিমেন্ট, তার বিশ্লেষণের জন্য সর্বোচ্চ
-                                    নিয়ে সাজানো ডিজিটাল প্রোডাক্ট ম্যানেজমেন্ট লাইভ কোর্স। ইতালি
-                                    এক্সপার্টদের ২০ বছরের এক্সপেরিমেন্টেরা থেকে শিখুন প্রোডাক্ট
-                                    অপটিমাইজেশন থেকে শুরু করে প্রফেবর লঞ্চ পর্যন্ত।
+                                    {course?.tagline || course?.description || 'প্রোডাক্ট ম্যানেজমেন্টের ব্যাসিক থেকে অ্যাডভান্সড ক্রিয়েটিভ, মার্কেট অনুগত এক্সপেরিমেন্ট, তার বিশ্লেষণের জন্য সর্বোচ্চ নিয়ে সাজানো ডিজিটাল প্রোডাক্ট ম্যানেজমেন্ট লাইভ কোর্স। ইতালি এক্সপার্টদের ২০ বছরের এক্সপেরিমেন্টেরা থেকে শিখুন প্রোডাক্ট অপটিমাইজেশন থেকে শুরু করে প্রফেবর লঞ্চ পর্যন্ত।'}
                                 </p>
                             </div>
 
@@ -256,7 +249,7 @@ const CourseHeroSection = () => {
                     {/* Course Module Header */}
                     <div className='text-center mb-12'>
                         <h3 className='text-xl font-semibold text-cyan-400 mb-4'>
-                            প্রোডাক্ট ম্যানেজমেন্ট ইন্ট্রোডাকশন (Module 1-4)
+                            {course?.title} (Module 1-{modules.length})
                         </h3>
 
                         {/* Instructors */}
@@ -264,13 +257,16 @@ const CourseHeroSection = () => {
                             <span>কোর্স নিরদেশ:</span>
                             {instructors.map((instructor, index) => (
                                 <div key={index} className='flex items-center gap-2'>
-                                    <Image
+                                    {/* <Image
                                         width={32}
                                         height={32}
-                                        src={instructor.avatar}
+                                        src={''}
                                         alt={instructor.name}
-                                        className='w-8 h-8 rounded-full border-2 border-gray-600'
-                                    />
+                                        className='w-8 h-8 rounded-full border-2 border-gray-600 bg-blue-500'
+                                    /> */}
+                                    <div className='w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center'>
+                                        <span className='text-white font-bold'>{instructor.name.charAt(0)}</span>
+                                    </div>
                                     <span>{instructor.name}</span>
                                 </div>
                             ))}
@@ -335,9 +331,9 @@ const CourseHeroSection = () => {
                 </div>
 
                 <div className='my-24 max-w-4xl mx-auto space-y-4'>
-                    <div className='mb-24'>
+                    {/* <div className='mb-24'>
                         <InstructorGrid />
-                    </div>
+                    </div> */}
 
 
                     <div className=' flex items-center justify-center w-full'>

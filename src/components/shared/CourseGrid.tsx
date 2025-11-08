@@ -3,112 +3,51 @@ import { Clock, Users, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const CourseGrid = () => {
-    const courses = [
-        {
-            id: 1,
-            title: 'Full Stack Web Development with Python, Django & React',
-            category: 'PD26',
+interface Course {
+    course_id: number;
+    title: string;
+    description: string;
+    price: string;
+    featured_video_url: string | null;
+    featured_image_url: string | null;
+    tagline: string;
+    location: string;
+    time: string | null;
+    capacity: string;
+    type: string;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
+interface CourseGridProps {
+    courses?: Course[];
+}
+
+const CourseGrid = ({ courses: apiCourses }: CourseGridProps = {}) => {
+
+
+    // Transform API courses to match the display format
+    const displayCourses = apiCourses && apiCourses.length > 0
+        ? apiCourses.map(course => ({
+            id: course.course_id,
+            title: course.title,
+            category: course.type.toUpperCase(),
             categoryColor: 'bg-emerald-100 text-emerald-700',
-            price: '৳৫,৯২০',
-            originalPrice: '৳৮,০০০',
-            discount: '২৬%',
-            duration: '৯ দিন বাকি',
-            image: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=200&fit=crop',
-            tech: ['Python', 'Django', 'React']
-        },
-        {
-            id: 2,
-            title: 'Full Stack Web Development with ASP.Net Core',
-            category: 'ASP35',
-            categoryColor: 'bg-blue-100 text-blue-700',
-            price: '৳৫,১০০',
-            originalPrice: '৳৮,০০০',
-            discount: '৩৬%',
-            duration: '৮ ঘন্টা বাকি',
-            image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop',
-            tech: ['ASP.NET', 'C#', 'SQL Server']
-        },
-        {
-            id: 3,
-            title: 'Full Stack Web Development with PHP, Laravel & Vue Js',
-            category: 'PHP26',
-            categoryColor: 'bg-purple-100 text-purple-700',
-            price: '৳৫,৯২০',
-            originalPrice: '৳৮,০০০',
-            discount: '২৬%',
-            duration: '৪ ঘন্টা বাকি',
-            image: 'https://images.unsplash.com/photo-1607706189992-eae578626c86?w=400&h=200&fit=crop',
-            tech: ['PHP', 'Laravel', 'Vue.js']
-        },
-        {
-            id: 4,
-            title: 'Mastering DevOps: From Fundamentals to Advanced Practices',
-            category: 'DEVOPS',
-            categoryColor: 'bg-orange-100 text-orange-700',
-            price: '৳৬,৫০০',
-            originalPrice: '৳৯,০০০',
-            discount: '২৮%',
-            duration: '৫ দিন বাকি',
-            image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=400&h=200&fit=crop',
-            tech: ['Docker', 'Kubernetes', 'Jenkins']
-        },
-        {
-            id: 5,
-            title: 'SQA Manual & Automated Testing Complete Course',
-            category: 'QA42',
-            categoryColor: 'bg-yellow-100 text-yellow-700',
-            price: '৳৪,৮০০',
-            originalPrice: '৳৭,০০০',
-            discount: '৩১%',
-            duration: '৬ দিন বাকি',
-            image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=200&fit=crop',
-            tech: ['Selenium', 'TestNG', 'API Testing']
-        },
-        {
-            id: 6,
-            title: 'Mastering Python: From Zero to Hero',
-            category: 'PY101',
-            categoryColor: 'bg-green-100 text-green-700',
-            price: '৳৩,৯০০',
-            originalPrice: '৳৫,৫০০',
-            discount: '২৯%',
-            duration: '৭ দিন বাকি',
-            image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=200&fit=crop',
-            tech: ['Python', 'Data Science', 'Machine Learning']
-        },
-        {
-            id: 7,
-            title: 'Complete React Native Mobile App Development',
-            category: 'RN88',
-            categoryColor: 'bg-cyan-100 text-cyan-700',
-            price: '৳৫,২০০',
-            originalPrice: '৳৭,৫০০',
-            discount: '৩১%',
-            duration: '৩ দিন বাকি',
-            image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=200&fit=crop',
-            tech: ['React Native', 'JavaScript', 'Mobile Dev']
-        },
-        {
-            id: 8,
-            title: 'Advanced JavaScript & Node.js Backend Development',
-            category: 'JS99',
-            categoryColor: 'bg-indigo-100 text-indigo-700',
-            price: '৳৪,৬০০',
-            originalPrice: '৳৬,৮০০',
-            discount: '৩২%',
-            duration: '২ দিন বাকি',
-            image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=200&fit=crop',
-            tech: ['JavaScript', 'Node.js', 'Express']
-        }
-    ];
+            price: `৳${course.price}`,
+            originalPrice: `৳${Math.floor(parseFloat(course.price) * 1.3)}`,
+            discount: '23%',
+            duration: course.location,
+            image: course.featured_image_url || 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=200&fit=crop',
+            tech: [course.type, course.location]
+        }))
+        : [];
 
     return (
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {courses.map((course) => (
-                        <Link href={`/course-details`} key={course.id} className="block">
+                    {displayCourses.map((course) => (
+                        <Link href={`/course/${course.id}`} key={course.id} className="block">
                             <div
                                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
                             >

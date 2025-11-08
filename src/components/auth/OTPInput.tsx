@@ -12,8 +12,8 @@ const OTPInput = () => {
   const [inputOTP, setInputOTP] = React.useState('');
 
   const handleOTPSubmit = () => {
-    if (inputOTP.length !== 6) {
-      alert('Please enter a valid 6-digit code');
+    if (inputOTP.length !== 5) {
+      alert('Please enter a valid 5-digit code');
       return;
     }
 
@@ -45,13 +45,13 @@ const OTPInput = () => {
         </div>
         <div className=' flex flex-col text-center gap-4 justify-center items-center'>
           <InputOTP
-            maxLength={6}
+            maxLength={5}
             value={inputOTP}
             onChange={(value) => setInputOTP(value)}
             onComplete={handleOTPSubmit}
           >
             <InputOTPGroup>
-              {[0, 1, 2, 3, 4, 5].map((i) => (
+              {[0, 1, 2, 3, 4].map((i) => (
                 <InputOTPSlot key={i} index={i} />
               ))}
             </InputOTPGroup>

@@ -154,40 +154,10 @@ export default function Navbar() {
                       <p className="text-xs sm:text-sm text-gray-600">Learn at your own pace from anywhere</p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                      {/* {courses.length > 0 && onlineCourses.map((course) => (
-                        <NavigationMenuLink key={course.id} asChild>
-                          <Link
-                            href={course.href}
-                            className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-                          >
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                              <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors mb-1 text-sm sm:text-base">
-                                {course.title}
-                              </h4>
-                              <p className="text-xs sm:text-sm text-gray-600 mb-2 line-clamp-2">
-                                {course.description}
-                              </p>
-                              <div className="flex items-center space-x-2 sm:space-x-4 text-xs text-gray-2000">
-                                <div className="flex items-center space-x-1">
-                                  <Clock className="w-3 h-3" />
-                                  <span>{course.duration}</span>
-                                </div>
-                                <div className="flex items-center space-x-1">
-                                  <Users className="w-3 h-3" />
-                                  <span>{course.students}</span>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                      ))} */}
                       {courses && courses.map((course: ICourse) => (
                         <NavigationMenuLink key={course.course_id} asChild>
                           <Link
-                            href={course.featured_image_url || '/course-details'}
+                            href={`/courses/${course.course_id}`}
                             className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                           >
                             <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
@@ -297,9 +267,10 @@ export default function Navbar() {
             <Image src={'/images/phone.svg'} alt='phone' width={18} height={18} />
             <span className='text-xs lg:text-sm font-medium'>12345678911</span>
           </div>
-          <Button variant='default' className='px-3 py-2 lg:px-6 lg:py-2 rounded-lg text-xs lg:text-sm font-semibold bg-blue-600 hover:bg-blue-700'>
+
+          <Link href="/signup" className='px-3 py-2 lg:px-6 lg:py-2 rounded-lg text-xs lg:text-sm font-semibold bg-[#EE1B24] hover:bg-[#EE1B24]/90 text-white transition-colors duration-200 transform hover:scale-105'>
             Join Us
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

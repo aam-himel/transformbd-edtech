@@ -5,6 +5,7 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import { useForm } from '@tanstack/react-form';
 import { useAuthMutations } from '@/hooks/useAuthMutations';
+import Link from 'next/link';
 
 const VerifyEmailForm = () => {
   const { emailVerifyMutation } = useAuthMutations();
@@ -72,7 +73,7 @@ const VerifyEmailForm = () => {
             >
               {isPending ? 'Submitting...' : 'Continue'}
             </Button>
-            <Button
+            {/* <Button
               variant='outline'
               className='w-full bg-transparent border border-gray-500 text-white hover:border-primary hover:bg-transparent'
             >
@@ -84,16 +85,14 @@ const VerifyEmailForm = () => {
                 className='mr-2'
               />
               Register with Google
-            </Button>
+            </Button> */}
           </div>
         </form>
 
         {/* Login Link */}
         <p className='text-sm text-center'>
           Already have an account?
-          <Button variant='link' className='pl-1'>
-            Login
-          </Button>
+          <Link href="/login" className='pl-1'>Login</Link>
         </p>
       </div>
     </div>
