@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { BookOpen, Users, Clock, MapPin } from 'lucide-react'
-import { useCourseStore } from '@/store/courseStore'
+import { useCourses } from '@/hooks/useCourses'
 import { ICourse } from '@/types/api'
 
 export default function Navbar() {
@@ -27,44 +27,6 @@ export default function Navbar() {
     },
   ];
 
-  const onlineCourses = [
-    {
-      id: 1,
-      title: 'Web Development Fundamentals',
-      description: 'Learn HTML, CSS, and JavaScript from scratch',
-      image: '/images/web-dev.jpg',
-      duration: '8 weeks',
-      students: '1,200+',
-      href: '/course-details'
-    },
-    {
-      id: 2,
-      title: 'React & Next.js Mastery',
-      description: 'Build modern web applications with React',
-      image: '/images/react-course.jpg',
-      duration: '12 weeks',
-      students: '850+',
-      href: '/course-details'
-    },
-    {
-      id: 3,
-      title: 'Python for Beginners',
-      description: 'Start your programming journey with Python',
-      image: '/images/python-course.jpg',
-      duration: '10 weeks',
-      students: '2,100+',
-      href: '/course-details'
-    },
-    {
-      id: 4,
-      title: 'Data Science & Analytics',
-      description: 'Master data analysis and machine learning',
-      image: '/images/data-science.jpg',
-      duration: '16 weeks',
-      students: '650+',
-      href: '/course-details'
-    }
-  ];
 
   const offlineCourses = [
     {
@@ -105,7 +67,7 @@ export default function Navbar() {
     }
   ];
 
-  const { courses } = useCourseStore();
+  const { data: courses } = useCourses();
 
   return (
     <div className='h-[64px] bg-white border-b border-b-gray-500/20 shadow-xs'>
@@ -200,7 +162,7 @@ export default function Navbar() {
                   Offline Courses
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className='left-0 top-0 w-[100vw] sm:w-auto'>
-                  <div className="w-full max-w-[90vw] sm:w-[600px] lg:w-[700px] xl:w-[800px] p-4 sm:p-6">
+                  {/* <div className="w-full max-w-[90vw] sm:w-[600px] lg:w-[700px] xl:w-[800px] p-4 sm:p-6">
                     <div className="mb-4">
                       <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Offline Courses</h3>
                       <p className="text-xs sm:text-sm text-gray-600">In-person intensive programs with direct mentorship</p>
@@ -244,6 +206,15 @@ export default function Navbar() {
                       >
                         View all offline courses →
                       </Link>
+                    </div>
+                  </div> */}
+                  <div className="w-full max-w-[50vw] sm:w-[500px] lg:w-[600px] xl:w-[700px] p-4 sm:p-6">
+                    <div className="mb-4">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Offline Courses</h3>
+                      <p className="text-xs sm:text-sm text-gray-600">In-person intensive programs with direct mentorship</p>
+                    </div>
+                    <div className=' py-8 pr-8'>
+                      <p className='text-green-600'>Offline Courses Coming Soon</p>
                     </div>
                   </div>
                 </NavigationMenuContent>
