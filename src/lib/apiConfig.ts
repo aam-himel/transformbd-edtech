@@ -6,5 +6,6 @@ export const apiconfigs = {
     register: `${API_BASE_URL}/register`,
     verifyEmail: `${API_BASE_URL}/verifyEmail`,
     verifyOTP: `${API_BASE_URL}/verifyOTP`,
+    myProfile: `${API_BASE_URL}/myProfile`,
   },
 };

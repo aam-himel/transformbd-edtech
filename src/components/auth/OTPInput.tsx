@@ -5,6 +5,8 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp';
 import { Button } from '../ui/button';
 import { useAuthMutations } from '@/hooks/useAuthMutations';
 import { useAuthStore } from '@/store/authStore';
+import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 const OTPInput = () => {
   const { verifyOTPMutation } = useAuthMutations();
@@ -13,7 +15,7 @@ const OTPInput = () => {
 
   const handleOTPSubmit = () => {
     if (inputOTP.length !== 5) {
-      alert('Please enter a valid 5-digit code');
+      toast.error('Please enter a valid 5-digit code');
       return;
     }
 
@@ -34,8 +36,7 @@ const OTPInput = () => {
             Just a bit more step...{' '}
           </h2>
           <p className='text-sm text-center text-gray-300'>
-            A code and a verification link will be sent to your register email
-            address.
+            A code has been sent to your registered email address: <strong>{email}</strong>
           </p>
         </div>
 
@@ -48,7 +49,6 @@ const OTPInput = () => {
             maxLength={5}
             value={inputOTP}
             onChange={(value) => setInputOTP(value)}
-            onComplete={handleOTPSubmit}
           >
             <InputOTPGroup>
               {[0, 1, 2, 3, 4].map((i) => (
@@ -59,12 +59,25 @@ const OTPInput = () => {
         </div>
 
         <div>
-          <Button className='w-full bg-primary text-white'>Continue</Button>
+          <Button
+            className='w-full bg-primary text-white'
+            onClick={handleOTPSubmit}
+            disabled={verifyOTPMutation.isPending || inputOTP.length !== 5}
+          >
+            {verifyOTPMutation.isPending ? (
+              <>
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                Verifying...
+              </>
+            ) : (
+              'Continue'
+            )}
+          </Button>
         </div>
         {/* Login Link */}
         <p className='text-sm text-center'>
-          Send again within 02:00 min{' '}
-          <Button variant='link' className='pl-1'>
+          Didn&apos;t receive the code?{' '}
+          <Button variant='link' className='pl-1 text-primary'>
             Resend Code
           </Button>
         </p>
