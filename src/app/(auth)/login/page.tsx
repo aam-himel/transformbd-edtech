@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function LoginPage() {
   return (
@@ -51,17 +52,17 @@ export default function LoginPage() {
             />
           </div>
 
-          <p className='text-sm text-center'>
+          {/* <p className='text-sm text-center'>
             Forgot password?
             <Button variant='link' className='pl-1 text-base'>
               Reset now
             </Button>
-          </p>
+          </p> */}
 
           {/* Buttons */}
-          <div className='flex flex-col gap-3 pt-6'>
+          <div className='flex flex-col gap-3 pt-2'>
             <Button className='w-full bg-primary text-white'>Sign In</Button>
-            <Button
+            {/* <Button
               variant='outline'
               className='w-full bg-transparent border border-gray-500 text-white hover:border-primary hover:bg-transparent'
             >
@@ -73,13 +74,13 @@ export default function LoginPage() {
                 className='mr-2'
               />
               Register with Google
-            </Button>
+            </Button> */}
           </div>
 
           <p className='text-sm text-center'>
             Don’t have an account?
             <Button variant='link' className='pl-1 text-base'>
-              Register Now
+              <Link href="/signup" className='pl-1'>Register</Link>
             </Button>
           </p>
         </div>

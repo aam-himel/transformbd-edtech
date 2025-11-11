@@ -92,7 +92,9 @@ const VerifyEmailForm = () => {
         {/* Login Link */}
         <p className='text-sm text-center'>
           Already have an account?
-          <Link href="/login" className='pl-1'>Login</Link>
+          <Button variant='link' className='pl-1 text-base'>
+            <Link href="/login" className='pl-1'>Login</Link>
+          </Button>
         </p>
       </div>
     </div>
