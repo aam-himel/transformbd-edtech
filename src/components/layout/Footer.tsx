@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link';
 import React from 'react'
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedin, } from "react-icons/fa6";
 
@@ -17,17 +18,16 @@ export default function Footer() {
             <div className='flex-1'>
               <h3 className='brand-subtitle mb-6'>কোর্সসমূহ</h3>
               <ul>
-                <li>স্কিল ডেভেলপমেন্ট</li>
-                <li>প্রোগ্রামিং</li>
-                <li>ডেভেলপমেন্ট</li>
+                <Link href="/courses" className='hover:underline'><li>অনলাইন কোর্স</li></Link>
+                <Link href="/courses" className='hover:underline'><li>অফলাইন কোর্স</li></Link>
               </ul>
             </div>
             <div className='flex-1'>
-              <h3 className='brand-subtitle mb-6'>কোর্সসমূহ</h3>
+              <h3 className='brand-subtitle mb-6'>অন্যান্য</h3>
               <ul>
-                <li>স্কিল ডেভেলপমেন্ট</li>
-                <li>প্রোগ্রামিং</li>
-                <li>ডেভেলপমেন্ট</li>
+                <li><Link href="/about" className='hover:underline'>আমাদের সম্পর্কে</Link></li>
+                <li><Link href="/privacy-policy" className='hover:underline'>প্রাইভেসি পলিসি </Link></li>
+                <li><Link href="/terms-and-conditions" className='hover:underline'>শর্তাবলী এবং নিয়ম</Link></li>
               </ul>
             </div>
           </div>
@@ -36,8 +36,6 @@ export default function Footer() {
         {/* col 3 */}
         <div>
           <h3 className='brand-subtitle mb-6'>আমাদের যোগাযোগ মাধ্যম</h3>
-          <p>কল করুন: 16910 (24x7)</p>
-          <p>কল করুন: 16910 (24x7)</p>
           <p>কল করুন: 16910 (24x7)</p>
 
           <div className="flex items-center space-x-3 mt-6">

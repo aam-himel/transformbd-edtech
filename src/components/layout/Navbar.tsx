@@ -23,10 +23,9 @@ export default function Navbar() {
     },
     {
       title: 'About',
-      href: '#',
+      href: '/about',
     },
   ];
-
 
   const offlineCourses = [
     {

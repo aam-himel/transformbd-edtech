@@ -47,7 +47,7 @@ const CourseGrid = ({ courses: apiCourses }: CourseGridProps = {}) => {
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {displayCourses.map((course) => (
-                        <Link href={`/course/${course.id}`} key={course.id} className="block">
+                        <Link href={`/courses/${course.id}`} key={course.id} className="block">
                             <div
                                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
                             >
