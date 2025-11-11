@@ -9,13 +9,16 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import Link from 'next/link'
-import { Button } from '../ui/button'
 import Image from 'next/image'
-import { BookOpen, Users, Clock, MapPin } from 'lucide-react'
+import { BookOpen, Users } from 'lucide-react'
 import { useCourses } from '@/hooks/useCourses'
 import { ICourse } from '@/types/api'
+import { useAuth } from '@/hooks/useAuth'
+import ProfileDropdown from '../auth/ProfileDropdown'
 
 export default function Navbar() {
+  const { isAuthenticated } = useAuth();
+
   const navLinks = [
     {
       title: 'Home',
@@ -238,9 +241,14 @@ export default function Navbar() {
             <span className='text-xs lg:text-sm font-medium'>12345678911</span>
           </div>
 
-          <Link href="/signup" className='px-3 py-2 lg:px-6 lg:py-2 rounded-lg text-xs lg:text-sm font-semibold bg-[#EE1B24] hover:bg-[#EE1B24]/90 text-white transition-colors duration-200 transform hover:scale-105'>
-            Join Us
-          </Link>
+          {/* Show Profile Dropdown if authenticated, otherwise show Join Us button */}
+          {isAuthenticated ? (
+            <ProfileDropdown />
+          ) : (
+            <Link href="/signup" className='px-3 py-2 lg:px-6 lg:py-2 rounded-lg text-xs lg:text-sm font-semibold bg-[#EE1B24] hover:bg-[#EE1B24]/90 text-white transition-colors duration-200 transform hover:scale-105'>
+              Join Us
+            </Link>
+          )}
         </div>
       </div>
     </div>
