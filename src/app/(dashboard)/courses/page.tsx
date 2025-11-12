@@ -18,8 +18,8 @@ export default function CourseList() {
     <div>
       <div className=" py-12">
         <div className=" flex flex-col gap-4 items-center py-12">
-          <h1 className="text-3xl font-bold text-primary">স্পেশাল অফার</h1>
-          <p>স্পেশাল অফারে এখনি জয়েন করুন আমাদের অন্যান্য কোর্স গুলোতে </p>
+          <h1 className="text-3xl font-bold text-primary">অনলাইন কোর্স</h1>
+          <p>স্পেশাল অফারে এখনি জয়েন করুন আমাদের অনলাইন কোর্স গুলোতে </p>
         </div>
 
         <CourseGrid courses={courses} />

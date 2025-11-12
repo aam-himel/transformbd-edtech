@@ -98,7 +98,7 @@ export default function TermsAndConditions() {
             </p>
             <div className='bg-gray-50 p-4 rounded-lg mb-6'>
               <p><strong>ইমেইল:</strong> legal@transformbd.com</p>
-              <p><strong>ফোন:</strong> +880 1234 567890</p>
+              <p><strong>ফোন:</strong> +880 1723 329440</p>
               <p><strong>ঠিকানা:</strong> ঢাকা, বাংলাদেশ</p>
             </div>
 

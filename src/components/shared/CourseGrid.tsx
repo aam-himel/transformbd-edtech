@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Users, Star } from 'lucide-react';
+import { Clock, Users, Star, MapPinned } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -27,27 +27,14 @@ const CourseGrid = ({ courses: apiCourses }: CourseGridProps = {}) => {
 
 
     // Transform API courses to match the display format
-    const displayCourses = apiCourses && apiCourses.length > 0
-        ? apiCourses.map(course => ({
-            id: course.course_id,
-            title: course.title,
-            category: course.type.toUpperCase(),
-            categoryColor: 'bg-emerald-100 text-emerald-700',
-            price: `৳${course.price}`,
-            originalPrice: `৳${Math.floor(parseFloat(course.price) * 1.3)}`,
-            discount: '23%',
-            duration: course.location,
-            image: course.featured_image_url || 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=200&fit=crop',
-            tech: [course.type, course.location]
-        }))
-        : [];
+    const displayCourses = apiCourses || [];
 
     return (
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {displayCourses.map((course) => (
-                        <Link href={`/courses/${course.id}`} key={course.id} className="block">
+                        <Link href={`/courses/${course.course_id}`} key={course.course_id} className="block">
                             <div
                                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
                             >
@@ -56,66 +43,45 @@ const CourseGrid = ({ courses: apiCourses }: CourseGridProps = {}) => {
                                     <Image
                                         width={400}
                                         height={200}
-                                        src={course.image}
+                                        src={course.featured_image_url || '/images/course-placeholder.png'}
                                         alt={course.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"></div>
 
-                                    {/* Tech Stack Overlay */}
-                                    <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
-                                        {course.tech.map((tech, index) => (
-                                            <span
-                                                key={index}
-                                                className="px-2 py-1 bg-black/70 text-white text-xs rounded-full font-medium"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
 
                                     {/* Category Badge */}
                                     <div className="absolute top-3 left-3">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${course.categoryColor}`}>
-                                            {course.category}
+                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${course.type === 'pre-online' ? 'bg-green-500' : 'bg-red-500'}`}>
+                                            {course.type.toUpperCase()}
                                         </span>
                                     </div>
 
                                     {/* Duration Badge */}
-                                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 px-2 py-1 rounded-full">
-                                        <Clock className="w-3 h-3 text-gray-600" />
-                                        <span className="text-xs text-gray-700 font-medium">{course.duration}</span>
+                                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
+                                        <MapPinned className="w-4 h-4 text-slate-800" />
+                                        <span className="text-xs text-slate-900 font-medium">{course.location}</span>
                                     </div>
                                 </div>
 
                                 {/* Course Content */}
                                 <div className="p-5">
-                                    <h3 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 leading-tight">
+                                    <h3 className="font-bold text-gray-900 text-lg mb-1 line-clamp-2 leading-tight">
                                         {course.title}
                                     </h3>
+
+                                    <p className='text-sm text-gray-600 mb-3'>{course.tagline}</p>
 
                                     {/* Price Section */}
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-2">
                                             <span className="text-2xl font-bold text-red-600">{course.price}</span>
-                                            <span className="text-sm text-gray-2000 line-through">{course.originalPrice}</span>
+                                            {/* <span className="text-sm text-gray-600 line-through">{course.price}</span> */}
                                         </div>
-                                        <div className="bg-orange-500 text-white px-2 py-1 rounded-full text-sm font-bold">
-                                            {course.discount}
-                                        </div>
+
                                     </div>
 
-                                    {/* Stats */}
-                                    <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
-                                        <div className="flex items-center gap-1">
-                                            <Users className="w-4 h-4" />
-                                            <span>১২৫+ শিক্ষার্থী</span>
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                                            <span>৪.৮</span>
-                                        </div>
-                                    </div>
 
                                     {/* Action Button */}
                                     <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02]">

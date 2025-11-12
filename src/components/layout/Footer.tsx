@@ -5,19 +5,19 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedin, } from "react-icons/fa
 
 export default function Footer() {
   return (
-    <div className=' max-w-[1140px] mx-auto pt-4 mt-4'>
-      <div className=' grid grid-cols-3 py-4'>
+    <div className=' max-w-[1140px] mx-auto pt-4 mt-4 px-6'>
+      <div className=' grid grid-cols-1 md:grid-cols-3 py-4'>
         {/* col 1 */}
-        <div className=''>
+        <div className='mb-6 md:mb-12'>
           <Image src="/images/logo.svg" alt='Online Classes' width={200} height={100} />
           <p>ডাউনলোড করুন আমাদের মোবাইল অ্যাপ</p>
         </div>
         {/* col 2 */}
-        <div>
+        <div className='py-4'>
           <div className='flex gap-2'>
             <div className='flex-1'>
               <h3 className='brand-subtitle mb-6'>কোর্সসমূহ</h3>
-              <ul>
+              <ul className=' space-y-2c'>
                 <Link href="/courses" className='hover:underline'><li>অনলাইন কোর্স</li></Link>
                 <Link href="/courses" className='hover:underline'><li>অফলাইন কোর্স</li></Link>
               </ul>
@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
 
         {/* col 3 */}
-        <div>
+        <div className='py-4'>
           <h3 className='brand-subtitle mb-6'>আমাদের যোগাযোগ মাধ্যম</h3>
           <p>কল করুন: 16910 (24x7)</p>
 

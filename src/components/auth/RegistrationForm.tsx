@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuthMutations } from '@/hooks/useAuthMutations';
 import { useAuthStore } from '@/store/authStore';
 import { Loader2 } from 'lucide-react';
@@ -205,7 +206,20 @@ export default function RegistrationForm() {
                   <FormItem>
                     <FormLabel>Profession *</FormLabel>
                     <FormControl>
-                      <Input placeholder='Software Engineer' {...field} />
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>  
+  <FormControl>    
+    <SelectTrigger>      
+      <SelectValue placeholder="Select your profession" />    
+    </SelectTrigger>  
+  </FormControl>  
+  <SelectContent>    
+    <SelectItem value="Public Sector">Public Sector</SelectItem>    
+    <SelectItem value="Private Sector">Private Sector</SelectItem>    
+    <SelectItem value="Entrepreneurs & Business Owners">Entrepreneurs & Business Owners</SelectItem>    
+    <SelectItem value="Service & Technical Professionals">Service & Technical Professionals</SelectItem>    
+    <SelectItem value="Agriculture & Rural Livelihoods">Agriculture & Rural Livelihoods</SelectItem>  
+  </SelectContent>
+</Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

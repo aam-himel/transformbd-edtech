@@ -87,7 +87,7 @@ export default function AboutUs() {
               <div className='grid md:grid-cols-3 gap-6 text-center'>
                 <div>
                   <h4 className='font-semibold text-slate-900 mb-2'>ফোন</h4>
-                  <p className='text-gray-700'>+880 1234 567890</p>
+                  <p className='text-gray-700'>+880 1723 329440</p>
                 </div>
                 <div>
                   <h4 className='font-semibold text-slate-900 mb-2'>ইমেইল</h4>
