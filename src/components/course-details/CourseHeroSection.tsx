@@ -158,7 +158,7 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                             <div className='flex items-center space-x-3 flex-wrap text-sm text-white'>
                                 <div className='flex items-center gap-1 bg-slate-800 px-3 py-2 rounded-full'>
                                     <Play className='w-4 h-4 text-green-400' />
-                                    <span className=' text-xs inline-block'>৩২ টি লাইভ ক্লাস</span>
+                                    <span className=' text-xs inline-block'>লাইভ ক্লাস</span>
                                 </div>
                                 <div className='flex items-center gap-1 bg-slate-800 px-4 py-2 rounded-full'>
                                     <Users className='w-4 h-4 text-green-400' />
@@ -207,7 +207,7 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                 </div>
                 <hr className=' border-[.1px] border-gray-50/10' />
                 {/* Curriculum Section */}
-                <div className='my-24'>
+                <div className='my-4 md:my-12 '>
                     <div className=' flex items-center justify-center w-full'>
                         <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
                             <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
@@ -330,64 +330,13 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                     </div>
                 </div>
 
-                <div className='my-24 max-w-4xl mx-auto space-y-4'>
+                <div className='my-6 md:my-12 max-w-4xl mx-auto space-y-4'>
                     {/* <div className='mb-24'>
                         <InstructorGrid />
                     </div> */}
 
 
-                    <div className=' flex items-center justify-center w-full'>
-                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
-                            <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
-                            যেসব ট্যুলস ও টেকনোলোজি শিখবেন
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute top-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute top-[-2px] right-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute bottom-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute right-[-2px] bottom-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                        </h2>
-                    </div>
-
-                    <div className=' grid grid-cols-4 gap-6'>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                        <div className=' h-28 bg-slate-500'></div>
-                    </div>
-
-
-                    <div className=' py-20'>
+                    <div className=' py-4 md:py-12'>
                         <div className=' flex items-center justify-center w-full'>
                             <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
                                 <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>

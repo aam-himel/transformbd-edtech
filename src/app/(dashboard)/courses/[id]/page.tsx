@@ -101,7 +101,7 @@ export default function CourseDetails() {
       </div>
 
       {/* Course Details Section */}
-      <div className="container mx-auto px-4 py-12 ">
+      <div className="max-w-[1140px] mx-auto px-4 py-12 ">
         {/* Course Description */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-primary mb-4">কোর্স সম্পর্কে</h2>
