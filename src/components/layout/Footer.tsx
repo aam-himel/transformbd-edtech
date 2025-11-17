@@ -39,29 +39,29 @@ export default function Footer() {
           <p>কল করুন: 16910 (24x7)</p>
 
           <div className="flex items-center space-x-3 mt-6">
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/Transformconsultancybd" target="_blank" rel="noopener noreferrer">
               <div className="h-10 w-10 rounded-lg bg-[#1877F2] flex items-center justify-center text-white hover:opacity-90 transition">
                 <FaFacebookF size={18} />
               </div>
             </a>
 
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@Transform-BD" target="_blank" rel="noopener noreferrer">
               <div className="h-10 w-10 rounded-lg bg-[#FF0000] flex items-center justify-center text-white hover:opacity-90 transition">
                 <FaYoutube size={18} />
               </div>
             </a>
 
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/transform.bd" target="_blank" rel="noopener noreferrer">
               <div className="h-10 w-10 rounded-lg bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] flex items-center justify-center text-white hover:opacity-90 transition">
                 <FaInstagram size={18} />
               </div>
             </a>
 
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            {/* <a href="#" target="_blank" rel="noopener noreferrer">
               <div className="h-10 w-10 rounded-lg bg-[#0A66C2] flex items-center justify-center text-white hover:opacity-90 transition">
                 <FaLinkedin size={18} />
               </div>
-            </a>
+            </a> */}
           </div>
 
         </div>

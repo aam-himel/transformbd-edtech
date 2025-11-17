@@ -4,6 +4,7 @@ import './globals.css';
 import { ReactQueryClientProvider } from '@/components/ReactQueryClientProvider';
 import { Toaster } from "@/components/ui/sonner"
 import AuthProvider from '@/providers/AuthProvider';
+import CoursesProvider from '@/components/shared/CoursesProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,7 +33,9 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <AuthProvider>
-            {children}
+            <CoursesProvider>
+              {children}
+            </CoursesProvider>
           </AuthProvider>
           <Toaster />
         </body>

@@ -20,6 +20,8 @@ export interface ICourse {
   time: string | null;
   capacity: string;
   type: string;
+  preview_homepage: string | null;
+  other_information: string | null;
   created_at: string | null;
   updated_at: string | null;
 }

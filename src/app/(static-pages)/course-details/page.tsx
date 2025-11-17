@@ -1,10 +1,15 @@
-
+"use client";
 
 import Footer from "@/components/layout/Footer";
 import CourseHeroSection from "@/components/course-details/CourseHeroSection";
 import Navbar from "@/components/layout/Navbar";
+import { useEffect } from "react";
 
 export default function CourseDetails() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div>

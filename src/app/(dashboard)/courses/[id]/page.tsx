@@ -16,6 +16,8 @@ interface Course {
   time: string | null;
   capacity: string;
   type: string;
+  preview_homepage: string | null;
+  other_information: string | null;
   created_at: string | null;
   updated_at: string | null;
 }
@@ -51,6 +53,9 @@ export default function CourseDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Scroll to top when page loads or course ID changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     fetchCourseDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
@@ -101,7 +106,18 @@ export default function CourseDetails() {
       </div>
 
       {/* Course Details Section */}
-      <div className="max-w-[1140px] mx-auto px-4 py-12 ">
+      <div className="max-w-4xl mx-auto px-4 py-12 ">
+        {/* Course Description */}
+        {courseData?.course?.other_information && (
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-4">কোর্সের সুবিধাসমূহ</h2>
+            <div className="bg-white shadow-md rounded-lg p-6">
+              <p className="text-gray-700 text-lg leading-relaxed">{courseData.course.other_information}</p>
+
+            </div>
+          </div>
+        )}
+
         {/* Course Description */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-primary mb-4">কোর্স সম্পর্কে</h2>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,14 +10,15 @@ import {
 } from "@/components/ui/navigation-menu"
 import Link from 'next/link'
 import Image from 'next/image'
-import { BookOpen, Users } from 'lucide-react'
-import { useCourses } from '@/hooks/useCourses'
+import { Users } from 'lucide-react'
 import { ICourse } from '@/types/api'
 import { useAuth } from '@/hooks/useAuth'
 import ProfileDropdown from '../auth/ProfileDropdown'
+import { useCourseStore } from '@/store/courseStore'
 
 export default function Navbar() {
   const { isAuthenticated } = useAuth();
+  const { courses } = useCourseStore();
 
   const navLinks = [
     {
@@ -29,9 +30,6 @@ export default function Navbar() {
       href: '/about',
     },
   ];
-
-
-  const { data: courses } = useCourses();
 
   return (
     <div className='h-[64px] bg-white border-b border-b-gray-500/20 shadow-xs'>
@@ -74,7 +72,7 @@ export default function Navbar() {
                   Online Courses
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className='left-0 top-0 w-[100vw] sm:w-auto'>
-                  <div className="w-full max-w-[90vw] sm:w-[600px] lg:w-[700px] xl:w-[800px] p-4 sm:p-6">
+                  <div className="max-w-[90vw] sm:w-[500px] lg:w-[600px] xl:w-[700px] p-4 sm:p-6">
                     <div className="mb-4">
                       <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Online Courses</h3>
                       <p className="text-xs sm:text-sm text-gray-600">Learn at your own pace from anywhere</p>
@@ -96,13 +94,7 @@ export default function Navbar() {
                               <p className="text-xs sm:text-sm text-gray-600 mb-2 line-clamp-2">
                                 {course.tagline}
                               </p>
-                              <div className="flex items-center space-x-2 sm:space-x-4 text-xs text-gray-2000">
 
-                                <div className="flex items-center space-x-1">
-                                  <Users className="w-3 h-3" />
-                                  <span>{course.capacity}</span>
-                                </div>
-                              </div>
                             </div>
                           </Link>
                         </NavigationMenuLink>
