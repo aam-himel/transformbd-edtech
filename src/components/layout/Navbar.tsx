@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/navigation-menu"
 import Link from 'next/link'
 import Image from 'next/image'
-import { Users } from 'lucide-react'
 import { ICourse } from '@/types/api'
 import { useAuth } from '@/hooks/useAuth'
 import ProfileDropdown from '../auth/ProfileDropdown'
@@ -77,24 +76,31 @@ export default function Navbar() {
                       <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Online Courses</h3>
                       <p className="text-xs sm:text-sm text-gray-600">Learn at your own pace from anywhere</p>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                      {courses && courses.map((course: ICourse) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                      {courses && courses.slice(0, 5).map((course: ICourse) => (
                         <NavigationMenuLink key={course.course_id} asChild>
                           <Link
                             href={`/courses/${course.course_id}`}
-                            className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                            className="flex flex-row items-center space-x-3 p-3 rounded-lg border border-gray-200/5 shadow-sm hover:bg-gray-50 hover:shadow-md transition-all group"
                           >
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                              {course.featured_image_url ? <Image src={course.featured_image_url} alt={course.title} width={64} height={64} className="rounded-lg" /> : <Image src="/images/course-placeholder.png" alt="Course Placeholder" width={40} height={40} className="rounded-lg w-full h-full" />}
+                            {/* Image Container - Left Side */}
+                            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0">
+                              <Image
+                                src={course.featured_image_url || '/images/course-placeholder.png'}
+                                alt={course.title}
+                                fill
+                                className="object-cover"
+                              />
                             </div>
+
+                            {/* Content - Right Side */}
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors mb-1 text-sm sm:text-base">
+                              <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm sm:text-base line-clamp-2">
                                 {course.title}
                               </h4>
-                              <p className="text-xs sm:text-sm text-gray-600 mb-2 line-clamp-2">
-                                {course.tagline}
-                              </p>
-
+                              {/* <p className="text-xs text-gray-500 line-clamp-1 mt-1">
+                                {course.tagline || course.description}
+                              </p> */}
                             </div>
                           </Link>
                         </NavigationMenuLink>

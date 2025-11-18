@@ -32,30 +32,30 @@ const HeroSection = () => {
 
         {/* Cards */}
         <div className="mt-16 grid md:grid-cols-2 gap-8">
-          {/* Card 1 */}
-          <Link href="/courses">
-            <div className="relative rounded-xl transition bg-[#0d0103] border border-gray-200 py-2 flex items-center justify-center">
-              <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden">
-                <Image
-                  src="/images/banner11.jpeg"
-                  alt="Online Courses"
-                  fill
-                  className="object-contain w-full h-full"
-                />
-              </div>
+          {/* Card 1 - Online Courses */}
+          <Link href="/courses" className="group">
+            <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+              <Image
+                src="/images/landing/online.gif"
+                alt="Online Courses"
+                fill
+                className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
+                unoptimized
+              />
             </div>
           </Link>
 
-          {/* Card 2 */}
-          <div onClick={handleOfflineCourse} className="cursor-pointer relative rounded-xl transition bg-[#da802e] border border-gray-200 py-2 flex items-center justify-center">
-            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden">
-              <Image
-                src="/images/banner11.png"
-                alt="Offline Courses"
-                fill
-                className="object-contain w-full h-full"
-              />
-            </div>
+          {/* Card 2 - Offline Courses */}
+          <div
+            onClick={handleOfflineCourse}
+            className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
+          >
+            <Image
+              src="/images/landing/offline.gif"
+              alt="Offline Courses"
+              fill
+              className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
+            />
           </div>
         </div>
 
