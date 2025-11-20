@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
     Play,
     X,
@@ -9,14 +10,12 @@ import {
     PlayCircle,
     ArrowRight,
 } from 'lucide-react';
-import InstructorGrid from './InstructorGrid';
-import Image from 'next/image';
 
 export type Instructor = {
     id: string;
     name: string;
     title: string;
-    avatar: string; // local / public image path or remote URL
+    avatar: string;
     rating?: number; // 0-5
     students?: number;
     tags?: string[];
@@ -39,6 +38,8 @@ interface Course {
     time: string | null;
     capacity: string;
     type: string;
+    preview_homepage: string | null;
+    other_information: string | null;
     created_at: string | null;
     updated_at: string | null;
 }
@@ -68,8 +69,23 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [activeModule, setActiveModule] = useState(0);
 
-    // Dummy YouTube video ID - replace with actual video ID
-    const videoId = 'dQw4w9WgXcQ';
+    // Extract video ID from YouTube URL if it exists
+    const getYouTubeVideoId = (url: string | null) => {
+        if (!url) return null;
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    };
+
+    // Check if URL is a YouTube video
+    const isYouTubeUrl = (url: string | null) => {
+        if (!url) return false;
+        return url.includes('youtube.com') || url.includes('youtu.be');
+    };
+
+    const videoUrl = course?.featured_video_url || null;
+    const videoId = isYouTubeUrl(videoUrl) ? getYouTubeVideoId(videoUrl) : null;
+    const hasVideo = !!videoUrl;
 
     // Use API data if available, otherwise use dummy data
     const modules = apiModules && apiModules.length > 0 ? apiModules.map(m => ({
@@ -78,27 +94,15 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
         title: m.title,
         icon: '📚',
         color: 'bg-orange-500',
-        lessons: [m.description],
+        description: m.description,
+        isHTML: m.description.includes('<') && m.description.includes('>'), // Check if content is HTML
     })) : []
 
     const instructors = apiInstructors && apiInstructors.length > 0 ? apiInstructors.map(i => ({
         name: i.name,
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
         role: 'ইন্সট্রাক্টর',
-    })) : [
-        {
-            name: 'Shadman Rahman',
-            avatar:
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
-            role: 'Senior Product Manager',
-        },
-        {
-            name: 'S M Aliuzzaman Tushar',
-            avatar:
-                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face',
-            role: 'Product Strategy Expert',
-        },
-    ];
+    })) : [];
 
     const willLearn: { icon: string, title: string }[] = [
         { icon: '🎯', title: 'প্রোডাক্ট আইডিয়া জেনারেশন টেকনিক' },
@@ -171,38 +175,89 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                             </div>
                         </div>
 
-                        {/* Right Video Section */}
-                        <div className='relative'>
-                            <div className='bg-gradient-to-r from-[#101828] to-slate-900 rounded-2xl p-6 border border-slate-600/50'>
-                                <div className='flex items-center gap-2 mb-4'>
-                                    <PlayCircle className='w-5 h-5 text-cyan-400' />
-                                    <span className='text-sm font-medium text-white'>
-                                        কিভাবে দেখে নিন কোর্সের ডেমো ক্লাস
-                                    </span>
-                                </div>
-
-                                {/* Video Thumbnail */}
-                                <div
-                                    className='relative bg-slate-900 rounded-xl overflow-hidden cursor-pointer group'
-                                    onClick={() => setIsVideoOpen(true)}
-                                >
-                                    <div className='aspect-video bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center'>
-                                        <div className='text-center'>
-                                            <div className='w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto group-hover:bg-white/30 transition-colors'>
-                                                <Play
-                                                    className='w-8 h-8 text-white ml-1'
-                                                    fill='currentColor'
-                                                />
-                                            </div>
+                        {/* Right Video/Image Section - Only show if video or image exists */}
+                        {(hasVideo || course?.featured_image_url) && (
+                            <div className='relative'>
+                                <div className='bg-gradient-to-r from-[#101828] to-slate-900 rounded-2xl p-6 border border-slate-600/50'>
+                                    {hasVideo && (
+                                        <div className='flex items-center gap-2 mb-4'>
+                                            <PlayCircle className='w-5 h-5 text-cyan-400' />
+                                            <span className='text-sm font-medium text-white'>
+                                                ভিডিও দেখুন
+                                            </span>
                                         </div>
-                                    </div>
+                                    )}
 
-                                    {/* Decorative Elements */}
-                                    <div className='absolute top-4 right-4 w-12 h-12 border-2 border-white/20 rounded-lg transform rotate-12'></div>
-                                    <div className='absolute bottom-4 left-4 w-8 h-8 border-2 border-white/20 rounded-full'></div>
+                                    {/* Video/Image Thumbnail */}
+                                    <div
+                                        className={`relative bg-slate-900 rounded-xl overflow-hidden ${hasVideo ? 'cursor-pointer' : ''} group`}
+                                        onClick={() => hasVideo && setIsVideoOpen(true)}
+                                    >
+                                        <div className='aspect-video bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center relative'>
+                                            {/* Show video thumbnail or video player for non-YouTube */}
+                                            {hasVideo ? (
+                                                <>
+                                                    {videoId ? (
+                                                        // YouTube video - show thumbnail
+                                                        <>
+                                                            <Image
+                                                                src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                                                                alt="Video Thumbnail"
+                                                                fill
+                                                                className='object-cover'
+                                                                unoptimized
+                                                            />
+                                                            <div className='absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors'></div>
+                                                            <div className='relative text-center z-10'>
+                                                                <div className='w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto group-hover:bg-white/30 transition-colors'>
+                                                                    <Play
+                                                                        className='w-8 h-8 text-white ml-1'
+                                                                        fill='currentColor'
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    ) : (
+                                                        // Non-YouTube video - show video player or play icon
+                                                        <>
+                                                            {course?.featured_image_url ? (
+                                                                <Image
+                                                                    src={course.featured_image_url}
+                                                                    alt={course.title}
+                                                                    fill
+                                                                    className='object-cover'
+                                                                />
+                                                            ) : null}
+                                                            <div className='absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors'></div>
+                                                            <div className='relative text-center z-10'>
+                                                                <div className='w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto group-hover:bg-white/30 transition-colors'>
+                                                                    <Play
+                                                                        className='w-8 h-8 text-white ml-1'
+                                                                        fill='currentColor'
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </>
+                                            ) : course?.featured_image_url ? (
+                                                // Show featured image if no video but image exists
+                                                <Image
+                                                    src={course.featured_image_url}
+                                                    alt={course.title}
+                                                    fill
+                                                    className='object-cover'
+                                                />
+                                            ) : null}
+                                        </div>
+
+                                        {/* Decorative Elements */}
+                                        <div className='absolute top-4 right-4 w-12 h-12 border-2 border-white/20 rounded-lg transform rotate-12'></div>
+                                        <div className='absolute bottom-4 left-4 w-8 h-8 border-2 border-white/20 rounded-full'></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
                 <hr className=' border-[.1px] border-gray-50/10' />
@@ -311,17 +366,22 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                                             <h4 className='font-semibold mb-3 text-cyan-400'>
                                                 এই মডিউলে যা শিখবেন:
                                             </h4>
-                                            <ul className='space-y-2'>
-                                                {module.lessons.map((lesson, index) => (
-                                                    <li
-                                                        key={index}
-                                                        className='flex items-start gap-3 text-gray-300'
-                                                    >
-                                                        <div className='w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0'></div>
-                                                        <span>{lesson}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                            {module.isHTML ? (
+                                                // Render HTML content
+                                                <div
+                                                    className='prose prose-invert prose-sm max-w-none module-content'
+                                                    dangerouslySetInnerHTML={{ __html: module.description }}
+                                                    style={{
+                                                        color: '#d1d5db'
+                                                    }}
+                                                />
+                                            ) : (
+                                                // Render plain text
+                                                <div className='flex items-start gap-3 text-gray-300'>
+                                                    <div className='w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0'></div>
+                                                    <span>{module.description}</span>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 )}
@@ -336,7 +396,7 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                     </div> */}
 
 
-                    <div className=' py-4 md:py-12'>
+                    {/* <div className=' py-4 md:py-12'>
                         <div className=' flex items-center justify-center w-full'>
                             <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
                                 <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
@@ -383,10 +443,10 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 {/* Video Modal */}
-                {isVideoOpen && (
+                {isVideoOpen && hasVideo && (
                     <div className='fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4'>
                         <div className='relative w-full max-w-4xl aspect-video'>
                             <button
@@ -395,12 +455,25 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                             >
                                 <X className='w-8 h-8' />
                             </button>
-                            <iframe
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                                className='w-full h-full rounded-lg'
-                                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                                allowFullScreen
-                            ></iframe>
+                            {videoId ? (
+                                // YouTube video
+                                <iframe
+                                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                                    className='w-full h-full rounded-lg'
+                                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                                    allowFullScreen
+                                ></iframe>
+                            ) : (
+                                // Other video sources (direct URL, Vimeo, etc.)
+                                <video
+                                    src={videoUrl || ''}
+                                    className='w-full h-full rounded-lg'
+                                    controls
+                                    autoPlay
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
+                            )}
                         </div>
                     </div>
                 )}

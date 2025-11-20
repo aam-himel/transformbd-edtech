@@ -5,6 +5,9 @@ import React from "react";
 
 export default function CourseList() {
   const { data: courses, isLoading, error } = useCourses();
+  const filteredCourses = courses?.filter(course => {
+    return course.preview_homepage !== "0";
+  })
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -22,7 +25,7 @@ export default function CourseList() {
           <p>স্পেশাল অফারে এখনি জয়েন করুন আমাদের অনলাইন কোর্স গুলোতে </p>
         </div>
 
-        <CourseGrid courses={courses} />
+        <CourseGrid courses={filteredCourses} />
       </div>
     </div>
   );

@@ -18,20 +18,20 @@ export default function CourseFacilities({ courses }: Props) {
             href={`/courses/${course.course_id}`}
             className='group'
           >
-            <div className='flex flex-col h-full text-center border border-gray-500/10 shadow-sm rounded-lg p-2.5 md:p-6 hover:shadow-lg hover:border-gray-500/20 transition-all duration-300 cursor-pointer'>
+            <div className='flex flex-col h-full text-center border border-gray-500/10 shadow-sm rounded-lg hover:shadow-lg hover:border-gray-500/20 transition-all duration-300 cursor-pointer'>
               {/* Image Container - Fixed aspect ratio */}
-              <div className='relative w-full aspect-square rounded-xl overflow-hidden mb-4'>
+              <div className='relative w-full aspect-video rounded-tl-xl rounded-tr-xl  overflow-hidden mb-4'>
                 <Image
                   src={course.featured_image_url || '/images/course-placeholder.png'}
                   alt={course.title}
                   fill
-                  className='object-cover rounded-xl group-hover:scale-105 transition-transform duration-300'
+                  className='object-cover   group-hover:scale-105 transition-transform duration-300'
                   sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
                 />
               </div>
 
               {/* Content Container - Consistent spacing */}
-              <div className='flex flex-col flex-1'>
+              <div className='flex flex-col flex-1  p-2.5 md:p-6'>
                 <h3 className='brand-h3 mt-4 mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-blue-600 transition-colors'>
                   {course.title}
                 </h3>
