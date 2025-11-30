@@ -54,7 +54,7 @@ export default function Navbar() {
               <li key={link.title}>
                 <Link
                   href={link.href}
-                  className='text-gray-700 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base'
+                  className='text-gray-700 hover:text-[#EE1B24] transition-colors font-medium text-sm xl:text-base'
                 >
                   {link.title}
                 </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
             <NavigationMenuList>
               {/* Online Courses Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className='text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base'>
+                <NavigationMenuTrigger className='text-gray-700 hover:text-[#EE1B24] font-medium text-sm xl:text-base'>
                   Online Courses
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className='left-0 top-0 w-[100vw] sm:w-auto'>
@@ -81,7 +81,7 @@ export default function Navbar() {
                         <NavigationMenuLink key={course.course_id} asChild>
                           <Link
                             href={`/courses/${course.course_id}`}
-                            className="flex flex-row items-center space-x-3 p-3 rounded-lg border border-gray-200/5 shadow-sm hover:bg-gray-50 hover:shadow-md transition-all group"
+                            className="flex flex-row items-center space-x-3 p-3 rounded-lg border border-gray-200/50 shadow-sm hover:bg-gray-50 hover:shadow-md transition-all group"
                           >
                             {/* Image Container - Left Side */}
                             <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0">
@@ -95,7 +95,7 @@ export default function Navbar() {
 
                             {/* Content - Right Side */}
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm sm:text-base line-clamp-2">
+                              <h4 className="font-medium text-gray-900 group-hover:text-[#EE1B24] transition-colors text-sm sm:text-base line-clamp-2">
                                 {course.title}
                               </h4>
                               {/* <p className="text-xs text-gray-500 line-clamp-1 mt-1">
@@ -109,7 +109,7 @@ export default function Navbar() {
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <Link
                         href="/courses"
-                        className="text-blue-600 hover:text-blue-700 font-medium text-xs sm:text-sm"
+                        className="text-[#EE1B24] hover:text-red-600 font-medium text-xs sm:text-sm"
                       >
                         View all online courses →
                       </Link>
@@ -119,23 +119,25 @@ export default function Navbar() {
               </NavigationMenuItem>
 
               {/* Offline Courses Dropdown */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className='text-gray-700 hover:text-blue-600 font-medium text-sm xl:text-base'>
-                  Offline Courses
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className='left-0 top-0 w-[100vw] sm:w-auto'>
+              {false && (
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className='text-gray-700 hover:text-[#EE1B24] font-medium text-sm xl:text-base'>
+                    Offline Courses
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className='left-0 top-0 w-[100vw] sm:w-auto'>
 
-                  <div className="w-full max-w-[50vw] sm:w-[500px] lg:w-[600px] xl:w-[700px] p-4 sm:p-6">
-                    <div className="mb-4">
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Offline Courses</h3>
-                      <p className="text-xs sm:text-sm text-gray-600">In-person intensive programs with direct mentorship</p>
+                    <div className="w-full max-w-[50vw] sm:w-[500px] lg:w-[600px] xl:w-[700px] p-4 sm:p-6">
+                      <div className="mb-4">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Offline Courses</h3>
+                        <p className="text-xs sm:text-sm text-gray-600">In-person intensive programs with direct mentorship</p>
+                      </div>
+                      <div className=' py-8 pr-8'>
+                        <p className='text-[#EE1B24]'>Offline Courses Coming Soon</p>
+                      </div>
                     </div>
-                    <div className=' py-8 pr-8'>
-                      <p className='text-green-600'>Offline Courses Coming Soon</p>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              )}
             </NavigationMenuList>
           </NavigationMenu>
         </div>

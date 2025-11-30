@@ -10,6 +10,7 @@ import {
     PlayCircle,
     ArrowRight,
 } from 'lucide-react';
+import CourseSectionTitle from './CourseSectionTitle';
 
 export type Instructor = {
     id: string;
@@ -155,7 +156,7 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
 
                             {/* CTA Button */}
                             <button className='bg-[#EE1B24] hover:bg-[#EE1B24]/90 text-white font-bold px-8 py-4 rounded-lg text-lg transition-colors duration-200 transform hover:scale-105'>
-                                পরবর্তী ব্যাচের জন্য বুকিং দিন
+                                Enroll Now
                             </button>
 
                             {/* Stats */}
@@ -263,44 +264,8 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                 <hr className=' border-[.1px] border-gray-50/10' />
                 {/* Curriculum Section */}
                 <div className='my-4 md:my-12 '>
-                    <div className=' flex items-center justify-center w-full'>
-                        <h2 className='relative mb-12 inline-block px-1.5 text-3xl font-bold text-center font-mono tracking-wider text-white uppercase dark:text-sky-300'>
-                            <span className='absolute inset-0 border border-dashed border-orange-300/60 bg-emerald-400-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30'></span>
-                            কারিকুলাম
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute top-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute top-[-2px] right-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute bottom-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                            <svg
-                                width='5'
-                                height='5'
-                                viewBox='0 0 5 5'
-                                className='absolute right-[-2px] bottom-[-2px] fill-sky-300 dark:fill-sky-300/50'
-                            >
-                                <path d='M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z'></path>
-                            </svg>
-                        </h2>
-                    </div>
+
+                    <CourseSectionTitle title="Curriculum" />
                     {/* Course Module Header */}
                     <div className='text-center mb-12'>
                         <h3 className='text-xl font-semibold text-cyan-400 mb-4'>
@@ -391,9 +356,6 @@ const CourseHeroSection = ({ course, instructors: apiInstructors, modules: apiMo
                 </div>
 
                 <div className='my-6 md:my-12 max-w-4xl mx-auto space-y-4'>
-                    {/* <div className='mb-24'>
-                        <InstructorGrid />
-                    </div> */}
 
 
                     {/* <div className=' py-4 md:py-12'>

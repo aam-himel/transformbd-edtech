@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import CourseHeroSection from "@/components/course-details/CourseHeroSection";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import CourseSectionTitle from "@/components/course-details/CourseSectionTitle";
 
 interface Course {
   course_id: number;
@@ -110,9 +111,9 @@ export default function CourseDetails() {
         {/* Course Description */}
         {courseData?.course?.other_information && (
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">কোর্সের সুবিধাসমূহ</h2>
-            <div className="bg-white shadow-md rounded-lg p-6">
-              <p className="text-gray-700 text-lg leading-relaxed">{courseData.course.other_information}</p>
+            <CourseSectionTitle title="Other information" />
+            <div className="bg-slate-900 text-white  border border-slate-700/50 overflow-hidden shadow-md rounded-lg p-6">
+              <p className="text-gray-200 text-lg leading-relaxed">{courseData.course.other_information}</p>
 
             </div>
           </div>
@@ -120,25 +121,25 @@ export default function CourseDetails() {
 
         {/* Course Description */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-4">কোর্স সম্পর্কে</h2>
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <p className="text-gray-700 text-lg leading-relaxed">{courseData.course.description}</p>
+          <CourseSectionTitle title="About the Course" />
+          <div className="bg-slate-900 text-white  border border-slate-700/50 overflow-hidden shadow-md rounded-lg p-6">
+            <p className="text-gray-200 text-lg leading-relaxed">{courseData.course.description}</p>
             <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="border-l-4 border-primary pl-4">
-                <p className="text-sm text-gray-600">মূল্য</p>
+                <p className="text-sm text-gray-200">মূল্য</p>
                 <p className="text-xl font-bold text-primary">৳{courseData.course.price}</p>
               </div>
               <div className="border-l-4 border-primary pl-4">
-                <p className="text-sm text-gray-600">লোকেশন</p>
-                <p className="text-xl font-bold text-slate-700">{courseData.course.location}</p>
+                <p className="text-sm text-gray-200">লোকেশন</p>
+                <p className="text-xl font-bold text-primary">{courseData.course.location}</p>
               </div>
               <div className="border-l-4 border-primary pl-4">
-                <p className="text-sm text-gray-600">সিট সংখ্যা</p>
-                <p className="text-xl font-bold text-slate-700">{courseData.course.capacity}</p>
+                <p className="text-sm text-gray-200">সিট সংখ্যা</p>
+                <p className="text-xl font-bold text-primary">{courseData.course.capacity}</p>
               </div>
               <div className="border-l-4 border-primary pl-4">
-                <p className="text-sm text-gray-600">টাইপ</p>
-                <p className="text-xl font-bold capitalize text-slate-700">{courseData.course.type}</p>
+                <p className="text-sm text-gray-200">টাইপ</p>
+                <p className="text-xl font-bold capitalize text-primary">{courseData.course.type}</p>
               </div>
             </div>
           </div>
@@ -146,17 +147,17 @@ export default function CourseDetails() {
 
         {/* Instructors */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-6">প্রশিক্ষকগণ</h2>
+          <CourseSectionTitle title="Instructors" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {courseData.instructors.map((instructor) => (
-              <div key={instructor.account_id} className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div key={instructor.account_id} className="bg-slate-900 text-white  border border-slate-700/50 overflow-hidden shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-red-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
                     {instructor.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-700">{instructor.name}</h3>
-                    <p className="text-gray-600">ইন্সট্রাক্টর</p>
+                    <h3 className="text-xl font-semibold text-slate-200">{instructor.name}</h3>
+                    <p className="text-gray-400">ইন্সট্রাক্টর</p>
                   </div>
                 </div>
               </div>
@@ -168,7 +169,7 @@ export default function CourseDetails() {
         {/* Enroll Button */}
         <div className="text-center py-8">
           <button className="bg-primary hover:bg-red-700 text-white font-bold py-4 px-12 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl">
-            এখনই ভর্তি হন
+            Enroll Now
           </button>
         </div>
       </div>
